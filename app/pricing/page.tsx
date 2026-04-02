@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     "Upgrade to Pro for unlimited teams, double elimination, round robin, and more. Plans start at $3.99/mo.",
 };
 
+const MONTHLY_LINK = "https://buy.stripe.com/fZu5kD09l2pX0b32s43Nm0L";
+const YEARLY_LINK = "https://buy.stripe.com/cNifZh7BN1lT9LDfeQ3Nm0M";
+
 const plans = [
   {
     name: "Free",
@@ -39,8 +42,9 @@ const plans = [
       "Print-ready A4 & Letter",
     ],
     cta: "Get Pro Monthly",
-    href: "#pro-monthly",
+    href: MONTHLY_LINK,
     highlighted: true,
+    external: true,
   },
   {
     name: "Pro Yearly",
@@ -53,8 +57,9 @@ const plans = [
       "Priority feature requests",
     ],
     cta: "Get Pro Yearly",
-    href: "#pro-yearly",
+    href: YEARLY_LINK,
     highlighted: false,
+    external: true,
   },
 ];
 
@@ -140,18 +145,45 @@ export default function PricingPage() {
                 ))}
               </ul>
 
-              <Link
-                href={plan.href}
-                className={`mt-8 block rounded-lg px-4 py-3 text-center text-sm font-semibold transition-colors ${
-                  plan.highlighted
-                    ? "bg-emerald-600 text-white hover:bg-emerald-700"
-                    : "border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
-                }`}
-              >
-                {plan.cta}
-              </Link>
+              {"external" in plan && plan.external ? (
+                <a
+                  href={plan.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`mt-8 block rounded-lg px-4 py-3 text-center text-sm font-semibold transition-colors ${
+                    plan.highlighted
+                      ? "bg-emerald-600 text-white hover:bg-emerald-700"
+                      : "border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                  }`}
+                >
+                  {plan.cta}
+                </a>
+              ) : (
+                <Link
+                  href={plan.href}
+                  className={`mt-8 block rounded-lg px-4 py-3 text-center text-sm font-semibold transition-colors ${
+                    plan.highlighted
+                      ? "bg-emerald-600 text-white hover:bg-emerald-700"
+                      : "border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                  }`}
+                >
+                  {plan.cta}
+                </Link>
+              )}
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <p className="text-sm text-zinc-500">
+            Already have Pro?{" "}
+            <Link
+              href="/pro/verify"
+              className="text-emerald-600 hover:text-emerald-700 underline"
+            >
+              Verify your access
+            </Link>
+          </p>
         </div>
       </main>
     </div>

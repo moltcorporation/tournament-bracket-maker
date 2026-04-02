@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import {
   generateBracket,
   getRoundLabel,
@@ -14,6 +14,7 @@ import {
   incrementDownload,
   getDownloadCount,
 } from "../../lib/free-tier";
+import { isProUser, MONTHLY_LINK, YEARLY_LINK } from "../../lib/pro-access";
 import Link from "next/link";
 
 const PRESETS = [4, 8, 16, 32, 64];
@@ -24,6 +25,11 @@ export default function EditorPage() {
   const [format, setFormat] = useState<BracketFormat>("single");
   const [bracket, setBracket] = useState<BracketData | null>(null);
   const [showUpgrade, setShowUpgrade] = useState(false);
+  const [isPro, setIsPro] = useState(false);
+
+  useEffect(() => {
+    setIsPro(isProUser());
+  }, []);
 
   const teams = useMemo(() => {
     return teamInput
@@ -33,8 +39,8 @@ export default function EditorPage() {
   }, [teamInput]);
 
   const teamCount = teams.length;
-  const isOverLimit = teamCount > FREE_LIMITS.maxTeams;
-  const isProFormat = !FREE_LIMITS.allowedFormats.includes(format);
+  const isOverLimit = !isPro && teamCount > FREE_LIMITS.maxTeams;
+  const isProFormat = !isPro && !FREE_LIMITS.allowedFormats.includes(format);
 
   const handlePreset = useCallback(
     (count: number) => {
@@ -53,23 +59,31 @@ export default function EditorPage() {
 
   const handleGenerate = useCallback(() => {
     if (teams.length < 2) return;
-    const effectiveTeams = isOverLimit
-      ? teams.slice(0, FREE_LIMITS.maxTeams)
-      : teams;
-    const effectiveFormat = isProFormat ? "single" : format;
-    const result = generateBracket(effectiveTeams, effectiveFormat, title);
+    if (isOverLimit) {
+      setShowUpgrade(true);
+      return;
+    }
+    if (isProFormat) {
+      setShowUpgrade(true);
+      return;
+    }
+    const result = generateBracket(teams, format, title);
     setBracket(result);
   }, [teams, format, title, isOverLimit, isProFormat]);
 
   const handleDownload = useCallback(() => {
     if (!bracket) return;
+    if (isPro) {
+      downloadBracketPDF(bracket, false);
+      return;
+    }
     if (!canDownload()) {
       setShowUpgrade(true);
       return;
     }
     incrementDownload();
     downloadBracketPDF(bracket, true);
-  }, [bracket]);
+  }, [bracket, isPro]);
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black">
@@ -81,12 +95,18 @@ export default function EditorPage() {
           >
             Tournament Bracket Maker
           </Link>
-          <Link
-            href="/pricing"
-            className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 transition-colors"
-          >
-            Upgrade to Pro
-          </Link>
+          {isPro ? (
+            <span className="rounded-lg bg-emerald-100 dark:bg-emerald-900 px-4 py-2 text-sm font-medium text-emerald-700 dark:text-emerald-300">
+              Pro
+            </span>
+          ) : (
+            <Link
+              href="/pricing"
+              className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 transition-colors"
+            >
+              Upgrade to Pro
+            </Link>
+          )}
         </div>
       </header>
 
@@ -113,19 +133,29 @@ export default function EditorPage() {
                 Quick Presets
               </label>
               <div className="flex flex-wrap gap-2">
-                {PRESETS.map((n) => (
-                  <button
-                    key={n}
-                    onClick={() => handlePreset(n)}
-                    className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors ${
-                      n > FREE_LIMITS.maxTeams
-                        ? "border-zinc-200 dark:border-zinc-800 text-zinc-400 dark:text-zinc-600"
-                        : "border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-emerald-500 hover:text-emerald-600"
-                    }`}
-                  >
-                    {n} teams{n > FREE_LIMITS.maxTeams ? " (Pro)" : ""}
-                  </button>
-                ))}
+                {PRESETS.map((n) => {
+                  const needsPro = !isPro && n > FREE_LIMITS.maxTeams;
+                  return (
+                    <button
+                      key={n}
+                      onClick={() => {
+                        if (needsPro) {
+                          setShowUpgrade(true);
+                          return;
+                        }
+                        handlePreset(n);
+                      }}
+                      className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors flex items-center gap-1.5 ${
+                        needsPro
+                          ? "border-zinc-200 dark:border-zinc-800 text-zinc-400 dark:text-zinc-600"
+                          : "border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-emerald-500 hover:text-emerald-600"
+                      }`}
+                    >
+                      {needsPro && <LockIcon />}
+                      {n} teams{needsPro ? " (Pro)" : ""}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -155,9 +185,12 @@ export default function EditorPage() {
               {isOverLimit && (
                 <p className="mt-1 text-xs text-red-500">
                   Free tier limited to {FREE_LIMITS.maxTeams} teams.{" "}
-                  <Link href="/pricing" className="underline">
+                  <button
+                    onClick={() => setShowUpgrade(true)}
+                    className="underline"
+                  >
                     Upgrade to Pro
-                  </Link>{" "}
+                  </button>{" "}
                   for unlimited teams.
                 </p>
               )}
@@ -175,31 +208,48 @@ export default function EditorPage() {
                     { value: "double", label: "Double Elimination", pro: true },
                     { value: "round-robin", label: "Round Robin", pro: true },
                   ] as { value: BracketFormat; label: string; pro: boolean }[]
-                ).map((f) => (
-                  <button
-                    key={f.value}
-                    onClick={() => setFormat(f.value)}
-                    className={`w-full rounded-lg border px-4 py-2.5 text-sm font-medium text-left flex items-center justify-between transition-colors ${
-                      format === f.value
-                        ? "border-emerald-500 bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"
-                        : "border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:border-zinc-400"
-                    }`}
-                  >
-                    {f.label}
-                    {f.pro && (
-                      <span className="rounded bg-zinc-200 dark:bg-zinc-700 px-2 py-0.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-                        PRO
+                ).map((f) => {
+                  const locked = f.pro && !isPro;
+                  return (
+                    <button
+                      key={f.value}
+                      onClick={() => {
+                        if (locked) {
+                          setShowUpgrade(true);
+                          return;
+                        }
+                        setFormat(f.value);
+                      }}
+                      className={`w-full rounded-lg border px-4 py-2.5 text-sm font-medium text-left flex items-center justify-between transition-colors ${
+                        format === f.value && !locked
+                          ? "border-emerald-500 bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"
+                          : locked
+                          ? "border-zinc-200 dark:border-zinc-800 text-zinc-400 dark:text-zinc-600"
+                          : "border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:border-zinc-400"
+                      }`}
+                    >
+                      <span className="flex items-center gap-2">
+                        {locked && <LockIcon />}
+                        {f.label}
                       </span>
-                    )}
-                  </button>
-                ))}
+                      {locked && (
+                        <span className="rounded bg-zinc-200 dark:bg-zinc-700 px-2 py-0.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+                          PRO
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
               {isProFormat && (
                 <p className="mt-2 text-xs text-amber-600 dark:text-amber-400">
                   This format requires Pro.{" "}
-                  <Link href="/pricing" className="underline">
+                  <button
+                    onClick={() => setShowUpgrade(true)}
+                    className="underline"
+                  >
                     Upgrade
-                  </Link>{" "}
+                  </button>{" "}
                   to unlock all formats.
                 </p>
               )}
@@ -218,8 +268,9 @@ export default function EditorPage() {
                 onClick={handleDownload}
                 className="w-full rounded-lg border-2 border-emerald-600 px-4 py-3 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950 transition-colors"
               >
-                Download PDF ({FREE_LIMITS.maxDownloads - getDownloadCount()}{" "}
-                free remaining)
+                {isPro
+                  ? "Download PDF"
+                  : `Download PDF (${FREE_LIMITS.maxDownloads - getDownloadCount()} free remaining)`}
               </button>
             )}
           </div>
@@ -261,27 +312,47 @@ export default function EditorPage() {
           </div>
         </div>
 
+        {/* Upgrade Modal */}
         {showUpgrade && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
             <div className="bg-white dark:bg-zinc-900 rounded-2xl p-8 max-w-md mx-4 shadow-xl">
               <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
-                Download Limit Reached
+                Upgrade to Pro
               </h3>
               <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                You&apos;ve used all {FREE_LIMITS.maxDownloads} free downloads
-                today. Upgrade to Pro for unlimited downloads, no watermarks,
-                more teams, and all formats.
+                Unlock unlimited teams, all bracket formats (double elimination,
+                round robin), unlimited PDF downloads, and no watermarks.
               </p>
-              <div className="mt-6 flex gap-3">
-                <Link
-                  href="/pricing"
-                  className="flex-1 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white text-center hover:bg-emerald-700 transition-colors"
+
+              <div className="mt-6 space-y-3">
+                <a
+                  href={MONTHLY_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full rounded-lg bg-emerald-600 px-4 py-3 text-sm font-semibold text-white text-center hover:bg-emerald-700 transition-colors"
                 >
-                  View Plans
+                  Pro Monthly — $3.99/mo
+                </a>
+                <a
+                  href={YEARLY_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full rounded-lg border-2 border-emerald-600 px-4 py-3 text-sm font-semibold text-emerald-600 dark:text-emerald-400 text-center hover:bg-emerald-50 dark:hover:bg-emerald-950 transition-colors"
+                >
+                  Pro Yearly — $24.99/yr (save 48%)
+                </a>
+              </div>
+
+              <div className="mt-4 flex justify-between items-center">
+                <Link
+                  href="/pro/verify"
+                  className="text-xs text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 underline"
+                >
+                  Already have Pro? Verify access
                 </Link>
                 <button
                   onClick={() => setShowUpgrade(false)}
-                  className="flex-1 rounded-lg border border-zinc-300 dark:border-zinc-700 px-4 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                  className="text-sm text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
                 >
                   Maybe Later
                 </button>
@@ -291,6 +362,24 @@ export default function EditorPage() {
         )}
       </main>
     </div>
+  );
+}
+
+function LockIcon() {
+  return (
+    <svg
+      className="h-3.5 w-3.5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+      />
+    </svg>
   );
 }
 
