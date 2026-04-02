@@ -219,6 +219,37 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Browse Brackets */}
+        <section className="mx-auto max-w-5xl px-4 py-16">
+          <h2 className="text-2xl font-bold text-center text-zinc-900 dark:text-zinc-100 mb-8">
+            Browse Bracket Types
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { href: "/single-elimination-bracket", label: "Single Elimination Bracket" },
+              { href: "/double-elimination-bracket", label: "Double Elimination Bracket" },
+              { href: "/round-robin-bracket", label: "Round Robin Bracket" },
+              { href: "/4-team-bracket", label: "4 Team Bracket" },
+              { href: "/8-team-bracket", label: "8 Team Bracket" },
+              { href: "/16-team-bracket", label: "16 Team Bracket" },
+              { href: "/32-team-bracket", label: "32 Team Bracket" },
+              { href: "/64-team-bracket", label: "64 Team Bracket" },
+              { href: "/basketball-bracket", label: "Basketball Bracket" },
+              { href: "/football-bracket", label: "Football Bracket" },
+              { href: "/soccer-bracket", label: "Soccer Bracket" },
+              { href: "/esports-bracket", label: "Esports Bracket" },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="rounded-lg border border-zinc-200 dark:border-zinc-800 px-4 py-3 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="mx-auto max-w-5xl px-4 py-20 text-center">
           <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
