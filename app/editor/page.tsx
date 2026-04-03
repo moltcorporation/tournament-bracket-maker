@@ -6,6 +6,7 @@ import {
   getRoundLabel,
   type BracketData,
   type BracketFormat,
+  type Match,
 } from "../../lib/bracket";
 import { downloadBracketPDF } from "../../lib/pdf-export";
 import {
@@ -384,9 +385,24 @@ function LockIcon() {
 }
 
 function BracketSVG({ bracket }: { bracket: BracketData }) {
-  const { rounds } = bracket;
+  const { rounds, format } = bracket;
+
+  if (format === "round-robin") {
+    return <RoundRobinDisplay rounds={rounds} />;
+  }
+
+  return <EliminationDisplay rounds={rounds} format={format} />;
+}
+
+function EliminationDisplay({
+  rounds,
+  format,
+}: {
+  rounds: Match[][];
+  format: BracketFormat;
+}) {
   const totalRounds = rounds.length;
-  const firstRoundMatches = rounds[0].length;
+  const firstRoundMatches = rounds[0]?.length || 1;
 
   const matchW = 160;
   const matchH = 48;
@@ -394,7 +410,7 @@ function BracketSVG({ bracket }: { bracket: BracketData }) {
   const roundWidth = matchW + roundGap;
   const svgWidth = totalRounds * roundWidth + 40;
   const baseSpacing = matchH + 16;
-  const svgHeight = Math.max(firstRoundMatches * baseSpacing + 60, 300);
+  const svgHeight = Math.max(firstRoundMatches * baseSpacing + 60, 400);
 
   return (
     <div className="overflow-auto flex-1">
@@ -418,7 +434,9 @@ function BracketSVG({ bracket }: { bracket: BracketData }) {
                 fontSize={11}
                 fontWeight={600}
               >
-                {getRoundLabel(r, totalRounds)}
+                {format === "double"
+                  ? getRoundLabel(r, totalRounds)
+                  : getRoundLabel(r, totalRounds)}
               </text>
 
               {roundMatches.map((match, m) => {
@@ -498,8 +516,8 @@ function BracketSVG({ bracket }: { bracket: BracketData }) {
                       {match.team2 || (r === 0 ? "BYE" : "TBD")}
                     </text>
 
-                    {/* Connector to next round */}
-                    {r < totalRounds - 1 && (
+                    {/* Connector to next round - only for single elimination */}
+                    {format === "single" && r < totalRounds - 1 && (
                       <ConnectorLine
                         x1={x + matchW}
                         y1={y + matchH / 2}
@@ -516,6 +534,38 @@ function BracketSVG({ bracket }: { bracket: BracketData }) {
           );
         })}
       </svg>
+    </div>
+  );
+}
+
+function RoundRobinDisplay({ rounds }: { rounds: Match[][] }) {
+  return (
+    <div className="flex-1 overflow-auto p-4">
+      <div className="space-y-6">
+        {rounds.map((roundMatches, r) => (
+          <div key={r}>
+            <h4 className="text-sm font-semibold text-slate-300 mb-3">
+              Round {r + 1}
+            </h4>
+            <div className="space-y-2">
+              {roundMatches.map((match) => (
+                <div
+                  key={match.id}
+                  className="rounded-lg bg-slate-800 border border-slate-700 p-3 flex items-center justify-between"
+                >
+                  <div className="text-sm font-medium text-slate-200">
+                    {match.team1 || "TBD"}
+                  </div>
+                  <div className="text-xs text-slate-500">vs</div>
+                  <div className="text-sm font-medium text-slate-200">
+                    {match.team2 || "TBD"}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
