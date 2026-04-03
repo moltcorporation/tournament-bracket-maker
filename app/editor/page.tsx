@@ -86,23 +86,23 @@ export default function EditorPage() {
   }, [bracket, isPro]);
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-black">
-      <header className="border-b border-zinc-200 dark:border-zinc-800">
+    <div className="min-h-screen bg-slate-950">
+      <header className="border-b border-slate-800">
         <div className="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between">
           <Link
             href="/"
-            className="text-xl font-bold text-black dark:text-white"
+            className="text-xl font-bold text-white"
           >
             Tournament Bracket Maker
           </Link>
           {isPro ? (
-            <span className="rounded-lg bg-emerald-100 dark:bg-emerald-900 px-4 py-2 text-sm font-medium text-emerald-700 dark:text-emerald-300">
+            <span className="rounded-lg bg-amber-900 px-4 py-2 text-sm font-medium text-amber-300">
               Pro
             </span>
           ) : (
             <Link
               href="/pricing"
-              className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 transition-colors"
+              className="rounded-lg bg-amber-500 px-4 py-2 text-sm font-medium text-slate-950 hover:bg-amber-400 transition-colors"
             >
               Upgrade to Pro
             </Link>
@@ -115,21 +115,21 @@ export default function EditorPage() {
           {/* Controls */}
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+              <label className="block text-sm font-medium text-slate-300 mb-1">
                 Tournament Title
               </label>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
                 placeholder="Tournament name"
               />
             </div>
 
             {/* Team Presets */}
             <div>
-              <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-slate-300 mb-2">
                 Quick Presets
               </label>
               <div className="flex flex-wrap gap-2">
@@ -147,8 +147,8 @@ export default function EditorPage() {
                       }}
                       className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors flex items-center gap-1.5 ${
                         needsPro
-                          ? "border-zinc-200 dark:border-zinc-800 text-zinc-400 dark:text-zinc-600"
-                          : "border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-emerald-500 hover:text-emerald-600"
+                          ? "border-slate-800 text-slate-600"
+                          : "border-slate-700 text-slate-300 hover:border-amber-500 hover:text-amber-500"
                       }`}
                     >
                       {needsPro && <LockIcon />}
@@ -161,11 +161,11 @@ export default function EditorPage() {
 
             {/* Team Input */}
             <div>
-              <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+              <label className="block text-sm font-medium text-slate-300 mb-1">
                 Teams/Players{" "}
                 <span
                   className={
-                    isOverLimit ? "text-red-500" : "text-zinc-400"
+                    isOverLimit ? "text-red-500" : "text-slate-400"
                   }
                 >
                   ({teamCount}
@@ -179,7 +179,7 @@ export default function EditorPage() {
                 value={teamInput}
                 onChange={(e) => setTeamInput(e.target.value)}
                 rows={10}
-                className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-mono"
+                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-amber-500 font-mono"
                 placeholder={"Enter team names, one per line\n\nExample:\nTeam Alpha\nTeam Beta\nTeam Gamma\nTeam Delta"}
               />
               {isOverLimit && (
@@ -198,7 +198,7 @@ export default function EditorPage() {
 
             {/* Format */}
             <div>
-              <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-slate-300 mb-2">
                 Format
               </label>
               <div className="space-y-2">
@@ -222,10 +222,10 @@ export default function EditorPage() {
                       }}
                       className={`w-full rounded-lg border px-4 py-2.5 text-sm font-medium text-left flex items-center justify-between transition-colors ${
                         format === f.value && !locked
-                          ? "border-emerald-500 bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"
+                          ? "border-amber-500 bg-amber-950 text-amber-300"
                           : locked
-                          ? "border-zinc-200 dark:border-zinc-800 text-zinc-400 dark:text-zinc-600"
-                          : "border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:border-zinc-400"
+                          ? "border-slate-800 text-slate-600"
+                          : "border-slate-700 text-slate-400 hover:border-slate-600"
                       }`}
                     >
                       <span className="flex items-center gap-2">
@@ -233,7 +233,7 @@ export default function EditorPage() {
                         {f.label}
                       </span>
                       {locked && (
-                        <span className="rounded bg-zinc-200 dark:bg-zinc-700 px-2 py-0.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+                        <span className="rounded bg-slate-700 px-2 py-0.5 text-xs font-semibold text-slate-400">
                           PRO
                         </span>
                       )}
@@ -258,7 +258,7 @@ export default function EditorPage() {
             <button
               onClick={handleGenerate}
               disabled={teamCount < 2}
-              className="w-full rounded-lg bg-emerald-600 px-4 py-3 text-sm font-semibold text-white hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="w-full rounded-lg bg-amber-500 px-4 py-3 text-sm font-semibold text-slate-950 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Generate Bracket
             </button>
@@ -266,7 +266,7 @@ export default function EditorPage() {
             {bracket && (
               <button
                 onClick={handleDownload}
-                className="w-full rounded-lg border-2 border-emerald-600 px-4 py-3 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950 transition-colors"
+                className="w-full rounded-lg border-2 border-amber-500 px-4 py-3 text-sm font-semibold text-amber-500 hover:bg-amber-950 transition-colors"
               >
                 {isPro
                   ? "Download PDF"
@@ -276,12 +276,12 @@ export default function EditorPage() {
           </div>
 
           {/* Bracket Preview */}
-          <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 min-h-[500px] flex flex-col overflow-x-auto">
+          <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 min-h-[500px] flex flex-col overflow-x-auto">
             {!bracket ? (
-              <div className="flex-1 flex items-center justify-center text-zinc-400">
+              <div className="flex-1 flex items-center justify-center text-slate-400">
                 <div className="text-center">
                   <svg
-                    className="mx-auto h-16 w-16 text-zinc-300 dark:text-zinc-700 mb-4"
+                    className="mx-auto h-16 w-16 text-slate-700 mb-4"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -303,7 +303,7 @@ export default function EditorPage() {
               </div>
             ) : (
               <>
-                <h3 className="text-lg font-bold text-center mb-4 text-zinc-900 dark:text-zinc-100">
+                <h3 className="text-lg font-bold text-center mb-4 text-white">
                   {bracket.title}
                 </h3>
                 <BracketSVG bracket={bracket} />
@@ -315,11 +315,11 @@ export default function EditorPage() {
         {/* Upgrade Modal */}
         {showUpgrade && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-white dark:bg-zinc-900 rounded-2xl p-8 max-w-md mx-4 shadow-xl">
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
+            <div className="bg-slate-900 rounded-2xl p-8 max-w-md mx-4 shadow-xl">
+              <h3 className="text-xl font-bold text-white">
                 Upgrade to Pro
               </h3>
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+              <p className="mt-2 text-sm text-slate-400">
                 Unlock unlimited teams, all bracket formats (double elimination,
                 round robin), unlimited PDF downloads, and no watermarks.
               </p>
@@ -329,7 +329,7 @@ export default function EditorPage() {
                   href={MONTHLY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full rounded-lg bg-emerald-600 px-4 py-3 text-sm font-semibold text-white text-center hover:bg-emerald-700 transition-colors"
+                  className="block w-full rounded-lg bg-amber-500 px-4 py-3 text-sm font-semibold text-slate-950 text-center hover:bg-amber-400 transition-colors"
                 >
                   Pro Monthly — $3.99/mo
                 </a>
@@ -337,7 +337,7 @@ export default function EditorPage() {
                   href={YEARLY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full rounded-lg border-2 border-emerald-600 px-4 py-3 text-sm font-semibold text-emerald-600 dark:text-emerald-400 text-center hover:bg-emerald-50 dark:hover:bg-emerald-950 transition-colors"
+                  className="block w-full rounded-lg border-2 border-amber-500 px-4 py-3 text-sm font-semibold text-amber-500 text-center hover:bg-amber-950 transition-colors"
                 >
                   Pro Yearly — $24.99/yr (save 48%)
                 </a>
@@ -346,13 +346,13 @@ export default function EditorPage() {
               <div className="mt-4 flex justify-between items-center">
                 <Link
                   href="/pro/verify"
-                  className="text-xs text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 underline"
+                  className="text-xs text-slate-400 hover:text-slate-300 underline"
                 >
                   Already have Pro? Verify access
                 </Link>
                 <button
                   onClick={() => setShowUpgrade(false)}
-                  className="text-sm text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
+                  className="text-sm text-slate-400 hover:text-slate-300"
                 >
                   Maybe Later
                 </button>
@@ -414,7 +414,7 @@ function BracketSVG({ bracket }: { bracket: BracketData }) {
                 x={x + matchW / 2}
                 y={16}
                 textAnchor="middle"
-                className="fill-zinc-400 dark:fill-zinc-600"
+                className="fill-slate-600"
                 fontSize={11}
                 fontWeight={600}
               >
@@ -433,7 +433,7 @@ function BracketSVG({ bracket }: { bracket: BracketData }) {
                       width={matchW}
                       height={matchH}
                       rx={6}
-                      className="fill-zinc-50 dark:fill-zinc-800 stroke-zinc-200 dark:stroke-zinc-700"
+                      className="fill-slate-800 stroke-slate-700"
                       strokeWidth={1}
                     />
                     {/* Divider */}
@@ -442,7 +442,7 @@ function BracketSVG({ bracket }: { bracket: BracketData }) {
                       y1={y + matchH / 2}
                       x2={x + matchW}
                       y2={y + matchH / 2}
-                      className="stroke-zinc-200 dark:stroke-zinc-700"
+                      className="stroke-slate-700"
                       strokeWidth={1}
                     />
                     {/* Seed numbers */}
@@ -452,7 +452,7 @@ function BracketSVG({ bracket }: { bracket: BracketData }) {
                       width={24}
                       height={matchH / 2}
                       rx={0}
-                      className="fill-zinc-100 dark:fill-zinc-700"
+                      className="fill-slate-700"
                     />
                     <rect
                       x={x}
@@ -460,14 +460,14 @@ function BracketSVG({ bracket }: { bracket: BracketData }) {
                       width={24}
                       height={matchH / 2}
                       rx={0}
-                      className="fill-zinc-100 dark:fill-zinc-700"
+                      className="fill-slate-700"
                     />
                     <text
                       x={x + 12}
                       y={y + matchH / 4 + 4}
                       textAnchor="middle"
                       fontSize={9}
-                      className="fill-zinc-400 dark:fill-zinc-500"
+                      className="fill-slate-500"
                     >
                       {r === 0 ? m * 2 + 1 : ""}
                     </text>
@@ -476,7 +476,7 @@ function BracketSVG({ bracket }: { bracket: BracketData }) {
                       y={y + (matchH * 3) / 4 + 4}
                       textAnchor="middle"
                       fontSize={9}
-                      className="fill-zinc-400 dark:fill-zinc-500"
+                      className="fill-slate-500"
                     >
                       {r === 0 ? m * 2 + 2 : ""}
                     </text>
@@ -485,7 +485,7 @@ function BracketSVG({ bracket }: { bracket: BracketData }) {
                       x={x + 30}
                       y={y + matchH / 4 + 4}
                       fontSize={11}
-                      className="fill-zinc-800 dark:fill-zinc-200"
+                      className="fill-slate-200"
                     >
                       {match.team1 || (r === 0 ? "BYE" : "TBD")}
                     </text>
@@ -493,7 +493,7 @@ function BracketSVG({ bracket }: { bracket: BracketData }) {
                       x={x + 30}
                       y={y + (matchH * 3) / 4 + 4}
                       fontSize={11}
-                      className="fill-zinc-800 dark:fill-zinc-200"
+                      className="fill-slate-200"
                     >
                       {match.team2 || (r === 0 ? "BYE" : "TBD")}
                     </text>
@@ -545,7 +545,7 @@ function ConnectorLine({
     <path
       d={`M ${x1} ${y1} H ${midX} V ${nextMidY} H ${nextRoundX}`}
       fill="none"
-      className="stroke-zinc-300 dark:stroke-zinc-600"
+      className="stroke-slate-600"
       strokeWidth={1.5}
     />
   );

@@ -28,14 +28,14 @@ export default function FootballBracketPage() {
       crossLinks={getCrossLinks("/football-bracket")}
       jsonLd={breadcrumbJsonLd(breadcrumbs)}
     >
-      <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-4xl">
+      <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
         Football Bracket Maker
       </h1>
-      <p className="mt-3 text-zinc-500">
+      <p className="mt-3 text-slate-400">
         Fantasy football playoffs, flag football leagues, and more
       </p>
 
-      <div className="mt-8 prose prose-zinc dark:prose-invert max-w-none">
+      <div className="mt-8 prose prose-invert max-w-none">
         <p>
           Football tournament brackets are essential for fantasy football
           leagues, flag football tournaments, and playoff prediction pools.
@@ -73,13 +73,13 @@ export default function FootballBracketPage() {
       <div className="mt-10 flex flex-col sm:flex-row gap-4">
         <Link
           href="/editor"
-          className="rounded-lg bg-emerald-600 px-6 py-3 text-center text-sm font-semibold text-white hover:bg-emerald-700 transition-colors"
+          className="rounded-lg bg-amber-500 px-6 py-3 text-center text-sm font-semibold text-slate-950 hover:bg-amber-400 transition-colors"
         >
           Create a Football Bracket — Free
         </Link>
         <Link
           href="/pricing"
-          className="rounded-lg border border-zinc-300 dark:border-zinc-700 px-6 py-3 text-center text-sm font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+          className="rounded-lg border border-slate-700 px-6 py-3 text-center text-sm font-semibold text-slate-300 hover:bg-slate-800 transition-colors"
         >
           View Pro Plans
         </Link>
