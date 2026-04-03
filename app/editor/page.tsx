@@ -498,8 +498,8 @@ function BracketSVG({ bracket }: { bracket: BracketData }) {
                       {match.team2 || (r === 0 ? "BYE" : "TBD")}
                     </text>
 
-                    {/* Connector to next round */}
-                    {r < totalRounds - 1 && (
+                    {/* Connector to next round (not for round-robin) */}
+                    {r < totalRounds - 1 && bracket.format !== "round-robin" && (
                       <ConnectorLine
                         x1={x + matchW}
                         y1={y + matchH / 2}
