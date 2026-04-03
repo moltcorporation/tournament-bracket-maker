@@ -3,24 +3,60 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary-navy: #001f3f;
+  --primary-dark-navy: #000a1f;
+  --accent-gold: #ffc107;
+  --accent-gold-dark: #ffa500;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary-navy: var(--primary-navy);
+  --color-accent-gold: var(--accent-gold);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-playfair);
+  --font-heading: var(--font-space-grotesk);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary-navy: #000a1f;
+    --primary-dark-navy: #000000;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Custom utility classes */
+.text-heading {
+  font-family: var(--font-playfair);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.btn-primary {
+  @apply bg-[#001f3f] hover:bg-[#000a1f] text-white font-semibold rounded-lg px-6 py-3 transition-all duration-200 hover:shadow-lg;
+}
+
+.btn-primary-alt {
+  @apply bg-[#ffc107] hover:bg-[#ffa500] text-[#001f3f] font-semibold rounded-lg px-6 py-3 transition-all duration-200 hover:shadow-lg;
+}
+
+/* Color theme for editor - use navy as primary instead of emerald */
+:is(.focus\:ring-\[\#001f3f\]:focus) {
+  --tw-ring-color: #001f3f;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1), 0 0 0 3px #001f3f;
 }
