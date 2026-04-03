@@ -8,126 +8,224 @@ export const metadata: Metadata = {
     "Create tournament brackets in seconds. Single elimination, double elimination, and round robin. Download print-ready PDFs. Free online bracket generator for sports, esports, and competitions.",
 };
 
+function HeroBracketSVG() {
+  return (
+    <svg
+      viewBox="0 0 520 280"
+      className="w-full max-w-lg mx-auto"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Round 1 matchups */}
+      <rect x="10" y="10" width="120" height="32" rx="6" className="fill-slate-800" />
+      <text x="20" y="31" className="fill-amber-400 text-[13px] font-semibold" fontFamily="system-ui">Eagles</text>
+      <text x="110" y="31" className="fill-slate-400 text-[11px]" fontFamily="system-ui" textAnchor="end">1</text>
+
+      <rect x="10" y="50" width="120" height="32" rx="6" className="fill-slate-800" />
+      <text x="20" y="71" className="fill-white text-[13px] font-semibold" fontFamily="system-ui">Hawks</text>
+      <text x="110" y="71" className="fill-slate-400 text-[11px]" fontFamily="system-ui" textAnchor="end">8</text>
+
+      <rect x="10" y="110" width="120" height="32" rx="6" className="fill-slate-800" />
+      <text x="20" y="131" className="fill-white text-[13px] font-semibold" fontFamily="system-ui">Wolves</text>
+      <text x="110" y="131" className="fill-slate-400 text-[11px]" fontFamily="system-ui" textAnchor="end">4</text>
+
+      <rect x="10" y="150" width="120" height="32" rx="6" className="fill-slate-800" />
+      <text x="20" y="171" className="fill-amber-400 text-[13px] font-semibold" fontFamily="system-ui">Tigers</text>
+      <text x="110" y="171" className="fill-slate-400 text-[11px]" fontFamily="system-ui" textAnchor="end">5</text>
+
+      <rect x="10" y="198" width="120" height="32" rx="6" className="fill-slate-800" />
+      <text x="20" y="219" className="fill-amber-400 text-[13px] font-semibold" fontFamily="system-ui">Lions</text>
+      <text x="110" y="219" className="fill-slate-400 text-[11px]" fontFamily="system-ui" textAnchor="end">3</text>
+
+      <rect x="10" y="238" width="120" height="32" rx="6" className="fill-slate-800" />
+      <text x="20" y="259" className="fill-white text-[13px] font-semibold" fontFamily="system-ui">Bears</text>
+      <text x="110" y="259" className="fill-slate-400 text-[11px]" fontFamily="system-ui" textAnchor="end">6</text>
+
+      {/* Connector lines R1 → R2 */}
+      <path d="M130 26 L155 26 L155 66 L155 66" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+      <path d="M130 66 L155 66" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+      <path d="M155 46 L170 46" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+      <path d="M155 26 L155 66" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+
+      <path d="M130 126 L155 126 L155 166" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+      <path d="M130 166 L155 166" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+      <path d="M155 146 L170 146" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+      <path d="M155 126 L155 166" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+
+      <path d="M130 214 L155 214 L155 254" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+      <path d="M130 254 L155 254" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+      <path d="M155 234 L170 234" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+      <path d="M155 214 L155 254" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+
+      {/* Round 2 (semis) */}
+      <rect x="170" y="30" width="120" height="32" rx="6" className="fill-slate-700" />
+      <text x="180" y="51" className="fill-amber-400 text-[13px] font-semibold" fontFamily="system-ui">Eagles</text>
+
+      <rect x="170" y="130" width="120" height="32" rx="6" className="fill-slate-700" />
+      <text x="180" y="151" className="fill-amber-400 text-[13px] font-semibold" fontFamily="system-ui">Tigers</text>
+
+      <rect x="170" y="218" width="120" height="32" rx="6" className="fill-slate-700" />
+      <text x="180" y="239" className="fill-amber-400 text-[13px] font-semibold" fontFamily="system-ui">Lions</text>
+
+      {/* Connector lines R2 → Finals */}
+      <path d="M290 46 L320 46 L320 146 L340 146" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+      <path d="M290 146 L320 146" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+
+      <path d="M290 234 L320 234 L320 190 L340 190" className="stroke-amber-500/60" strokeWidth="2" fill="none" />
+
+      {/* Finals */}
+      <rect x="340" y="130" width="130" height="32" rx="6" className="fill-slate-600" />
+      <text x="350" y="151" className="fill-amber-300 text-[13px] font-semibold" fontFamily="system-ui">Eagles</text>
+      <rect x="340" y="170" width="130" height="32" rx="6" className="fill-slate-600" />
+      <text x="350" y="191" className="fill-white text-[13px] font-semibold" fontFamily="system-ui">Lions</text>
+
+      {/* Champion */}
+      <path d="M470 146 L490 146 L490 168 L490 168" className="stroke-amber-400" strokeWidth="2" fill="none" />
+      <path d="M470 186 L490 186 L490 168" className="stroke-amber-400" strokeWidth="2" fill="none" />
+      <circle cx="505" cy="168" r="12" className="fill-amber-500" />
+      <text x="505" y="173" className="fill-slate-900 text-[14px] font-bold" fontFamily="system-ui" textAnchor="middle">W</text>
+
+      {/* Round labels */}
+      <text x="70" y="280" className="fill-slate-500 text-[10px]" fontFamily="system-ui" textAnchor="middle">Round 1</text>
+      <text x="230" y="280" className="fill-slate-500 text-[10px]" fontFamily="system-ui" textAnchor="middle">Semis</text>
+      <text x="405" y="280" className="fill-slate-500 text-[10px]" fontFamily="system-ui" textAnchor="middle">Finals</text>
+    </svg>
+  );
+}
+
+function TrophyIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 3.75h2.25A1.5 1.5 0 0120.25 5.25v1.5a3 3 0 01-3 3h-.044M7.5 3.75H5.25A1.5 1.5 0 003.75 5.25v1.5a3 3 0 003 3h.044M12 15.75v3M9 21h6M7.5 3.75h9v6a4.5 4.5 0 01-9 0v-6z" />
+    </svg>
+  );
+}
+
 const features = [
   {
-    title: "Team Input Made Easy",
+    title: "Quick Team Entry",
     description:
-      "Enter team or player names one per line. Use quick presets for 4, 8, 16, 32, or 64 teams.",
+      "Paste a list or use presets for 4, 8, 16, 32, or 64 teams. Auto-seeding matches top seeds against bottom.",
     icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
-      />
+      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7 text-amber-500" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+      </svg>
     ),
   },
   {
-    title: "Multiple Formats",
+    title: "Three Tournament Formats",
     description:
-      "Single elimination for quick tournaments, double elimination for fairer results, round robin for leagues.",
+      "Single elimination for speed, double elimination for fairness, round robin for full standings.",
     icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"
-      />
+      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7 text-amber-500" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6zm0 6h.008v.008H6V12zm0 6h.008v.008H6V18zm6-12h.008v.008H12V6zm0 6h.008v.008H12V12zm0 6h.008v.008H12V18zm6-12h.008v.008H18V6zm0 6h.008v.008H18V12zm0 6h.008v.008H18V18z" />
+      </svg>
     ),
   },
   {
-    title: "Clean SVG Brackets",
+    title: "SVG Bracket Rendering",
     description:
-      "Professional bracket visualization with seeding, round labels, and connector lines. Looks great on any screen.",
+      "Sharp vector brackets with round labels, seeding numbers, and connector lines. Looks crisp at any size.",
     icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z"
-      />
+      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7 text-amber-500" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" />
+      </svg>
     ),
   },
   {
-    title: "Print-Ready PDFs",
+    title: "Print-Ready PDF Export",
     description:
-      "Download clean PDF brackets optimized for printing. Share with players, post on walls, or save for records.",
+      "Download brackets sized for letter or A4 paper. Post on the wall, hand out to players, or archive.",
     icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z"
-      />
+      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7 text-amber-500" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+      </svg>
     ),
   },
   {
-    title: "Auto Seeding",
+    title: "Works Instantly",
     description:
-      "Teams are automatically seeded so top teams face bottom teams in early rounds. Fair matchups guaranteed.",
+      "No account, no login, no data on our servers. Everything runs in your browser. Start building in seconds.",
     icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5-4.5L16.5 21m0 0L12 16.5m4.5 4.5V7.5"
-      />
+      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7 text-amber-500" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+      </svg>
     ),
   },
   {
-    title: "No Account Required",
+    title: "Pro Customization",
     description:
-      "Start creating brackets instantly. No sign-up, no login, no data stored on our servers.",
+      "Unlock all formats, custom colors, logo branding, and unlimited teams with Pro. Save and share brackets.",
     icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
-      />
+      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7 text-amber-500" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 010 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 010-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
     ),
   },
 ];
 
 const useCases = [
   {
-    audience: "Sports Leagues",
-    use: "Create brackets for basketball, soccer, volleyball, and any team sport tournament.",
+    sport: "Basketball",
+    description: "March Madness-style brackets, league playoffs, 3-on-3 tournaments",
+    href: "/basketball-bracket",
   },
   {
-    audience: "Esports Organizers",
-    use: "Run gaming tournaments with clean, professional brackets players can follow.",
+    sport: "Football",
+    description: "Playoff brackets, fantasy leagues, flag football tournaments",
+    href: "/football-bracket",
   },
   {
-    audience: "Schools & Clubs",
-    use: "Organize intramural sports, debate competitions, and academic contests.",
+    sport: "Soccer",
+    description: "Cup-style tournaments, club leagues, futsal competitions",
+    href: "/soccer-bracket",
   },
   {
-    audience: "Office Events",
-    use: "Ping pong tournaments, trivia nights, and team-building competitions.",
+    sport: "Esports",
+    description: "Gaming tournaments, LAN events, online qualifiers",
+    href: "/esports-bracket",
   },
   {
-    audience: "Family Gatherings",
-    use: "Cornhole tournaments, board game brackets, and holiday competitions.",
+    sport: "Schools & Clubs",
+    description: "Intramurals, debate brackets, spelling bees, academic bowls",
+    href: "/single-elimination-bracket",
   },
   {
-    audience: "Community Events",
-    use: "Local league playoffs, charity tournament brackets, and community sports.",
+    sport: "Office & Social",
+    description: "Ping pong ladders, trivia nights, cornhole tournaments",
+    href: "/8-team-bracket",
   },
+];
+
+const steps = [
+  { step: "1", title: "Enter Teams", description: "Type or paste team names. Pick a preset size or enter any number." },
+  { step: "2", title: "Choose Format", description: "Single elimination, double elimination, or round robin." },
+  { step: "3", title: "Download PDF", description: "Print it, share it, or post it on the wall. Done in seconds." },
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-black">
-      <header className="border-b border-zinc-200 dark:border-zinc-800">
+    <div className="min-h-screen bg-slate-950">
+      {/* Header */}
+      <header className="border-b border-slate-800">
         <div className="mx-auto max-w-5xl px-4 py-4 flex items-center justify-between">
-          <span className="text-xl font-bold text-black dark:text-white">
-            Tournament Bracket Maker
-          </span>
+          <Link href="/" className="flex items-center gap-2">
+            <TrophyIcon className="h-6 w-6 text-amber-500" />
+            <span className="text-xl font-bold text-white">
+              Bracket Maker
+            </span>
+          </Link>
           <nav className="flex items-center gap-4">
             <Link
               href="/pricing"
-              className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+              className="text-sm text-slate-400 hover:text-white transition-colors"
             >
               Pricing
             </Link>
             <Link
               href="/editor"
-              className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 transition-colors"
+              className="rounded-lg bg-amber-500 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-amber-400 transition-colors"
             >
               Create Bracket
             </Link>
@@ -137,56 +235,79 @@ export default function Home() {
 
       <main>
         {/* Hero */}
-        <section className="mx-auto max-w-5xl px-4 py-20 text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-5xl">
-            Create Tournament Brackets
-            <br />
-            <span className="text-emerald-600">in Seconds</span>
-          </h1>
-          <p className="mt-6 text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-            Enter team names, choose a format, and download a clean, print-ready
-            bracket PDF. Works for any sport, game, or competition.
-          </p>
-          <div className="mt-8 flex justify-center gap-4">
-            <Link
-              href="/editor"
-              className="rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white hover:bg-emerald-700 transition-colors"
-            >
-              Make a Bracket — Free
-            </Link>
-            <Link
-              href="/pricing"
-              className="rounded-lg border border-zinc-300 dark:border-zinc-700 px-6 py-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
-            >
-              View Plans
-            </Link>
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 via-transparent to-transparent" />
+          <div className="relative mx-auto max-w-5xl px-4 pt-20 pb-12">
+            <div className="text-center">
+              <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                Build Tournament Brackets
+                <span className="block text-amber-400 mt-1">That Look Professional</span>
+              </h1>
+              <p className="mt-6 text-lg text-slate-400 max-w-xl mx-auto leading-relaxed">
+                Enter teams, pick a format, and download a clean PDF bracket.
+                Works for any sport, game, or competition — no account needed.
+              </p>
+              <div className="mt-8 flex justify-center gap-4 flex-wrap">
+                <Link
+                  href="/editor"
+                  className="rounded-lg bg-amber-500 px-6 py-3 text-sm font-bold text-slate-950 hover:bg-amber-400 transition-colors shadow-lg shadow-amber-500/20"
+                >
+                  Make a Bracket — Free
+                </Link>
+                <Link
+                  href="#how-it-works"
+                  className="rounded-lg border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-300 hover:bg-slate-800 transition-colors"
+                >
+                  See How It Works
+                </Link>
+              </div>
+            </div>
+
+            {/* Bracket Preview */}
+            <div className="mt-14 rounded-2xl border border-slate-800 bg-slate-900/80 p-6 sm:p-8 backdrop-blur-sm">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="h-3 w-3 rounded-full bg-red-500/60" />
+                <div className="h-3 w-3 rounded-full bg-amber-500/60" />
+                <div className="h-3 w-3 rounded-full bg-green-500/60" />
+                <span className="ml-3 text-xs text-slate-500 font-mono">tournament-preview.svg</span>
+              </div>
+              <HeroBracketSVG />
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works */}
+        <section id="how-it-works" className="border-y border-slate-800 bg-slate-900/50">
+          <div className="mx-auto max-w-5xl px-4 py-16">
+            <h2 className="text-2xl font-bold text-center text-white mb-12">
+              Three Steps to a Finished Bracket
+            </h2>
+            <div className="grid gap-8 sm:grid-cols-3">
+              {steps.map((s) => (
+                <div key={s.step} className="text-center">
+                  <div className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-lg font-bold mb-4">
+                    {s.step}
+                  </div>
+                  <h3 className="text-lg font-semibold text-white">{s.title}</h3>
+                  <p className="mt-2 text-sm text-slate-400 leading-relaxed">{s.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Features */}
         <section className="mx-auto max-w-5xl px-4 py-16">
-          <h2 className="text-2xl font-bold text-center text-zinc-900 dark:text-zinc-100 mb-12">
-            Everything You Need for Tournament Brackets
+          <h2 className="text-2xl font-bold text-center text-white mb-12">
+            Built for Real Tournaments
           </h2>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((f) => (
               <div key={f.title} className="flex gap-4">
-                <div className="shrink-0">
-                  <svg
-                    className="h-6 w-6 text-emerald-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={1.5}
-                  >
-                    {f.icon}
-                  </svg>
-                </div>
+                <div className="shrink-0 mt-0.5">{f.icon}</div>
                 <div>
-                  <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">
-                    {f.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  <h3 className="font-semibold text-white">{f.title}</h3>
+                  <p className="mt-1 text-sm text-slate-400 leading-relaxed">
                     {f.description}
                   </p>
                 </div>
@@ -195,36 +316,37 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Use Cases */}
-        <section className="bg-white dark:bg-zinc-900 border-y border-zinc-200 dark:border-zinc-800">
+        {/* Sport-Specific Sections */}
+        <section className="border-y border-slate-800 bg-slate-900/50">
           <div className="mx-auto max-w-5xl px-4 py-16">
-            <h2 className="text-2xl font-bold text-center text-zinc-900 dark:text-zinc-100 mb-12">
-              Who Uses Tournament Bracket Maker?
+            <h2 className="text-2xl font-bold text-center text-white mb-12">
+              Brackets for Every Competition
             </h2>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {useCases.map((uc) => (
-                <div
-                  key={uc.audience}
-                  className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-6"
+                <Link
+                  key={uc.sport}
+                  href={uc.href}
+                  className="group rounded-xl border border-slate-800 bg-slate-900 p-5 hover:border-amber-500/40 hover:bg-slate-800/80 transition-all"
                 >
-                  <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">
-                    {uc.audience}
+                  <h3 className="font-semibold text-white group-hover:text-amber-400 transition-colors">
+                    {uc.sport}
                   </h3>
-                  <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                    {uc.use}
+                  <p className="mt-2 text-sm text-slate-400">
+                    {uc.description}
                   </p>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Browse Brackets */}
+        {/* Browse All Bracket Types */}
         <section className="mx-auto max-w-5xl px-4 py-16">
-          <h2 className="text-2xl font-bold text-center text-zinc-900 dark:text-zinc-100 mb-8">
+          <h2 className="text-2xl font-bold text-center text-white mb-8">
             Browse Bracket Types
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { href: "/single-elimination-bracket", label: "Single Elimination Bracket" },
               { href: "/double-elimination-bracket", label: "Double Elimination Bracket" },
@@ -242,7 +364,7 @@ export default function Home() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-lg border border-zinc-200 dark:border-zinc-800 px-4 py-3 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+                className="rounded-lg border border-slate-800 px-4 py-3 text-sm text-slate-300 hover:bg-slate-800 hover:border-slate-700 transition-all"
               >
                 {link.label}
               </Link>
@@ -252,37 +374,40 @@ export default function Home() {
 
         {/* CTA */}
         <section className="mx-auto max-w-5xl px-4 py-20 text-center">
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
-            Ready to Create Your Bracket?
-          </h2>
-          <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-            No account needed. Start creating in seconds.
-          </p>
-          <Link
-            href="/editor"
-            className="mt-8 inline-block rounded-lg bg-emerald-600 px-8 py-3 text-sm font-semibold text-white hover:bg-emerald-700 transition-colors"
-          >
-            Create Your Bracket Now
-          </Link>
+          <div className="rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-950 p-12">
+            <TrophyIcon className="h-10 w-10 text-amber-500 mx-auto mb-4" />
+            <h2 className="text-3xl font-bold text-white">
+              Ready to Run Your Tournament?
+            </h2>
+            <p className="mt-4 text-slate-400 max-w-md mx-auto">
+              No account needed. Create a bracket and download a PDF in under a minute.
+            </p>
+            <Link
+              href="/editor"
+              className="mt-8 inline-block rounded-lg bg-amber-500 px-8 py-3 text-sm font-bold text-slate-950 hover:bg-amber-400 transition-colors shadow-lg shadow-amber-500/20"
+            >
+              Create Your Bracket Now
+            </Link>
+          </div>
         </section>
       </main>
 
-      <footer className="border-t border-zinc-200 dark:border-zinc-800">
+      <footer className="border-t border-slate-800">
         <div className="mx-auto max-w-5xl px-4 py-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-slate-500">
             Tournament Bracket Maker — Create printable tournament brackets for
             free.
           </p>
-          <nav className="flex gap-6 text-sm text-zinc-500">
+          <nav className="flex gap-6 text-sm text-slate-500">
             <Link
               href="/editor"
-              className="hover:text-zinc-700 dark:hover:text-zinc-300"
+              className="hover:text-slate-300 transition-colors"
             >
               Editor
             </Link>
             <Link
               href="/pricing"
-              className="hover:text-zinc-700 dark:hover:text-zinc-300"
+              className="hover:text-slate-300 transition-colors"
             >
               Pricing
             </Link>
