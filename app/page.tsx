@@ -8,6 +8,29 @@ export const metadata: Metadata = {
     "Create tournament brackets in seconds. Single elimination, double elimination, and round robin. Download print-ready PDFs. Free online bracket generator for sports, esports, and competitions.",
 };
 
+function TrophySVG({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className}>
+      <path d="M14 8h20v14a10 10 0 01-20 0V8z" fill="url(#trophyBody)" />
+      <path d="M14 12H8a4 4 0 000 8h2a6 6 0 004-2.2V12z" fill="url(#trophyHandle)" opacity="0.8" />
+      <path d="M34 12h6a4 4 0 010 8h-2a6 6 0 01-4-2.2V12z" fill="url(#trophyHandle)" opacity="0.8" />
+      <rect x="20" y="30" width="8" height="6" rx="1" fill="#b45309" />
+      <rect x="16" y="36" width="16" height="4" rx="2" fill="#92400e" />
+      <path d="M22 14l2-2 2 2-2 2z" fill="#fef3c7" opacity="0.7" />
+      <defs>
+        <linearGradient id="trophyBody" x1="24" y1="8" x2="24" y2="30" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#fbbf24" />
+          <stop offset="1" stopColor="#d97706" />
+        </linearGradient>
+        <linearGradient id="trophyHandle" x1="0" y1="0" x2="0" y2="1">
+          <stop stopColor="#f59e0b" />
+          <stop offset="1" stopColor="#b45309" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
 function HeroBracketSVG() {
   return (
     <svg
@@ -18,16 +41,16 @@ function HeroBracketSVG() {
     >
       <defs>
         <linearGradient id="winnerGrad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#166534" />
-          <stop offset="100%" stopColor="#14532d" />
+          <stop offset="0%" stopColor="#92400e" />
+          <stop offset="100%" stopColor="#78350f" />
         </linearGradient>
         <linearGradient id="matchGrad" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#1e293b" />
           <stop offset="100%" stopColor="#0f172a" />
         </linearGradient>
         <linearGradient id="champGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#854d0e" />
-          <stop offset="100%" stopColor="#713f12" />
+          <stop offset="0%" stopColor="#b45309" />
+          <stop offset="100%" stopColor="#92400e" />
         </linearGradient>
         <filter id="glow">
           <feGaussianBlur stdDeviation="3" result="blur" />
@@ -36,9 +59,9 @@ function HeroBracketSVG() {
       </defs>
 
       {/* Round 1 matchups */}
-      <rect x="10" y="10" width="130" height="34" rx="4" fill="url(#winnerGrad)" stroke="#22c55e" strokeWidth="1" strokeOpacity="0.5" />
-      <rect x="10" y="10" width="3" height="34" rx="1" fill="#22c55e" />
-      <text x="22" y="32" fill="#4ade80" fontSize="13" fontWeight="700" fontFamily="system-ui">Eagles</text>
+      <rect x="10" y="10" width="130" height="34" rx="4" fill="url(#winnerGrad)" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.5" />
+      <rect x="10" y="10" width="3" height="34" rx="1" fill="#f59e0b" />
+      <text x="22" y="32" fill="#fbbf24" fontSize="13" fontWeight="700" fontFamily="system-ui">Eagles</text>
       <text x="122" y="32" fill="#64748b" fontSize="10" fontFamily="system-ui" textAnchor="end">1</text>
 
       <rect x="10" y="50" width="130" height="34" rx="4" fill="url(#matchGrad)" stroke="#334155" strokeWidth="1" />
@@ -49,14 +72,14 @@ function HeroBracketSVG() {
       <text x="22" y="132" fill="#94a3b8" fontSize="13" fontWeight="500" fontFamily="system-ui">Wolves</text>
       <text x="122" y="132" fill="#475569" fontSize="10" fontFamily="system-ui" textAnchor="end">4</text>
 
-      <rect x="10" y="150" width="130" height="34" rx="4" fill="url(#winnerGrad)" stroke="#22c55e" strokeWidth="1" strokeOpacity="0.5" />
-      <rect x="10" y="150" width="3" height="34" rx="1" fill="#22c55e" />
-      <text x="22" y="172" fill="#4ade80" fontSize="13" fontWeight="700" fontFamily="system-ui">Tigers</text>
+      <rect x="10" y="150" width="130" height="34" rx="4" fill="url(#winnerGrad)" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.5" />
+      <rect x="10" y="150" width="3" height="34" rx="1" fill="#f59e0b" />
+      <text x="22" y="172" fill="#fbbf24" fontSize="13" fontWeight="700" fontFamily="system-ui">Tigers</text>
       <text x="122" y="172" fill="#64748b" fontSize="10" fontFamily="system-ui" textAnchor="end">5</text>
 
-      <rect x="10" y="210" width="130" height="34" rx="4" fill="url(#winnerGrad)" stroke="#22c55e" strokeWidth="1" strokeOpacity="0.5" />
-      <rect x="10" y="210" width="3" height="34" rx="1" fill="#22c55e" />
-      <text x="22" y="232" fill="#4ade80" fontSize="13" fontWeight="700" fontFamily="system-ui">Lions</text>
+      <rect x="10" y="210" width="130" height="34" rx="4" fill="url(#winnerGrad)" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.5" />
+      <rect x="10" y="210" width="3" height="34" rx="1" fill="#f59e0b" />
+      <text x="22" y="232" fill="#fbbf24" fontSize="13" fontWeight="700" fontFamily="system-ui">Lions</text>
       <text x="122" y="232" fill="#64748b" fontSize="10" fontFamily="system-ui" textAnchor="end">3</text>
 
       <rect x="10" y="250" width="130" height="34" rx="4" fill="url(#matchGrad)" stroke="#334155" strokeWidth="1" />
@@ -64,25 +87,25 @@ function HeroBracketSVG() {
       <text x="122" y="272" fill="#475569" fontSize="10" fontFamily="system-ui" textAnchor="end">6</text>
 
       {/* Connector lines R1 → R2 */}
-      <path d="M140 27 H158 V50 H158" stroke="#22c55e" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
+      <path d="M140 27 H158 V50 H158" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
       <path d="M140 67 H158" stroke="#334155" strokeWidth="1.5" fill="none" />
-      <path d="M158 27 V67" stroke="#22c55e" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
-      <path d="M158 47 H175" stroke="#22c55e" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
+      <path d="M158 27 V67" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
+      <path d="M158 47 H175" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
 
       <path d="M140 127 H158 V167" stroke="#334155" strokeWidth="1.5" fill="none" />
-      <path d="M140 167 H158" stroke="#22c55e" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
-      <path d="M158 127 V167" stroke="#22c55e" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
-      <path d="M158 147 H175" stroke="#22c55e" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
+      <path d="M140 167 H158" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
+      <path d="M158 127 V167" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
+      <path d="M158 147 H175" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
 
-      <path d="M140 227 H158 V267" stroke="#22c55e" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
+      <path d="M140 227 H158 V267" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
       <path d="M140 267 H158" stroke="#334155" strokeWidth="1.5" fill="none" />
-      <path d="M158 227 V267" stroke="#22c55e" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
-      <path d="M158 247 H175" stroke="#22c55e" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
+      <path d="M158 227 V267" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
+      <path d="M158 247 H175" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
 
       {/* Round 2 (semis) */}
-      <rect x="175" y="30" width="130" height="34" rx="4" fill="url(#winnerGrad)" stroke="#22c55e" strokeWidth="1" strokeOpacity="0.5" />
-      <rect x="175" y="30" width="3" height="34" rx="1" fill="#22c55e" />
-      <text x="187" y="52" fill="#4ade80" fontSize="13" fontWeight="700" fontFamily="system-ui">Eagles</text>
+      <rect x="175" y="30" width="130" height="34" rx="4" fill="url(#winnerGrad)" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.5" />
+      <rect x="175" y="30" width="3" height="34" rx="1" fill="#f59e0b" />
+      <text x="187" y="52" fill="#fbbf24" fontSize="13" fontWeight="700" fontFamily="system-ui">Eagles</text>
 
       <rect x="175" y="130" width="130" height="34" rx="4" fill="url(#matchGrad)" stroke="#334155" strokeWidth="1" />
       <text x="187" y="152" fill="#94a3b8" fontSize="13" fontWeight="500" fontFamily="system-ui">Tigers</text>
@@ -91,36 +114,44 @@ function HeroBracketSVG() {
       <text x="187" y="252" fill="#94a3b8" fontSize="13" fontWeight="500" fontFamily="system-ui">Lions</text>
 
       {/* Connector lines R2 → Finals */}
-      <path d="M305 47 H330 V147 H350" stroke="#22c55e" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
+      <path d="M305 47 H330 V147 H350" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
       <path d="M305 147 H330" stroke="#334155" strokeWidth="1.5" fill="none" />
-
       <path d="M305 247 H330 V195 H350" stroke="#334155" strokeWidth="1.5" fill="none" />
 
       {/* Finals */}
-      <rect x="350" y="132" width="140" height="34" rx="4" fill="url(#winnerGrad)" stroke="#22c55e" strokeWidth="1" strokeOpacity="0.5" />
-      <rect x="350" y="132" width="3" height="34" rx="1" fill="#22c55e" />
-      <text x="362" y="154" fill="#4ade80" fontSize="13" fontWeight="700" fontFamily="system-ui">Eagles</text>
+      <rect x="350" y="132" width="140" height="34" rx="4" fill="url(#winnerGrad)" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.5" />
+      <rect x="350" y="132" width="3" height="34" rx="1" fill="#f59e0b" />
+      <text x="362" y="154" fill="#fbbf24" fontSize="13" fontWeight="700" fontFamily="system-ui">Eagles</text>
       <rect x="350" y="172" width="140" height="34" rx="4" fill="url(#matchGrad)" stroke="#334155" strokeWidth="1" />
       <text x="362" y="194" fill="#94a3b8" fontSize="13" fontWeight="500" fontFamily="system-ui">Lions</text>
 
       {/* Champion badge */}
-      <path d="M490 149 H508 V173 H508" stroke="#eab308" strokeWidth="2" fill="none" filter="url(#glow)" />
-      <path d="M490 189 H508 V173" stroke="#eab308" strokeWidth="2" fill="none" filter="url(#glow)" />
-      <rect x="508" y="158" width="28" height="28" rx="6" fill="url(#champGrad)" stroke="#eab308" strokeWidth="1.5" />
-      <text x="522" y="177" fill="#fbbf24" fontSize="12" fontWeight="800" fontFamily="system-ui" textAnchor="middle">W</text>
+      <path d="M490 149 H508 V173 H508" stroke="#f59e0b" strokeWidth="2" fill="none" filter="url(#glow)" />
+      <path d="M490 189 H508 V173" stroke="#f59e0b" strokeWidth="2" fill="none" filter="url(#glow)" />
+      <rect x="508" y="158" width="28" height="28" rx="6" fill="url(#champGrad)" stroke="#fbbf24" strokeWidth="1.5" />
+      <text x="522" y="177" fill="#fef3c7" fontSize="12" fontWeight="800" fontFamily="system-ui" textAnchor="middle">W</text>
 
       {/* Round labels */}
-      <text x="75" y="298" fill="#475569" fontSize="10" fontWeight="600" fontFamily="system-ui" textAnchor="middle" letterSpacing="0.5">ROUND 1</text>
-      <text x="240" y="298" fill="#475569" fontSize="10" fontWeight="600" fontFamily="system-ui" textAnchor="middle" letterSpacing="0.5">SEMIS</text>
-      <text x="420" y="298" fill="#475569" fontSize="10" fontWeight="600" fontFamily="system-ui" textAnchor="middle" letterSpacing="0.5">FINALS</text>
+      <text x="75" y="298" fill="#f59e0b" fontSize="10" fontWeight="700" fontFamily="system-ui" textAnchor="middle" letterSpacing="1.5" opacity="0.6">ROUND 1</text>
+      <text x="240" y="298" fill="#f59e0b" fontSize="10" fontWeight="700" fontFamily="system-ui" textAnchor="middle" letterSpacing="1.5" opacity="0.6">SEMIS</text>
+      <text x="420" y="298" fill="#f59e0b" fontSize="10" fontWeight="700" fontFamily="system-ui" textAnchor="middle" letterSpacing="1.5" opacity="0.6">FINALS</text>
     </svg>
   );
 }
 
-function TrophyIcon({ className }: { className?: string }) {
+function WhistleIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 3.75h2.25A1.5 1.5 0 0120.25 5.25v1.5a3 3 0 01-3 3h-.044M7.5 3.75H5.25A1.5 1.5 0 003.75 5.25v1.5a3 3 0 003 3h.044M12 15.75v3M9 21h6M7.5 3.75h9v6a4.5 4.5 0 01-9 0v-6z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
+      <circle cx="12" cy="12" r="9" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function BracketIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h4v3H4zM4 15h4v3H4zM16 10.5h4v3h-4zM10 7.5h4M10 16.5h4M14 7.5v9" />
     </svg>
   );
 }
@@ -131,8 +162,11 @@ const features = [
     description:
       "Paste a list or use presets for 4, 8, 16, 32, or 64 teams. Auto-seeding matches top seeds against bottom.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7 text-emerald-400" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+      <svg viewBox="0 0 32 32" fill="none" className="h-8 w-8">
+        <rect x="4" y="4" width="24" height="24" rx="4" fill="#1e293b" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.3" />
+        <path d="M9 11h14M9 16h10M9 21h12" stroke="#f59e0b" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="22" cy="21" r="3" fill="#f59e0b" opacity="0.2" stroke="#f59e0b" strokeWidth="1" />
+        <path d="M21 21l1 1 2-2" stroke="#f59e0b" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -141,8 +175,14 @@ const features = [
     description:
       "Single elimination for speed, double elimination for fairness, round robin for full standings.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7 text-emerald-400" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6zm0 6h.008v.008H6V12zm0 6h.008v.008H6V18zm6-12h.008v.008H12V6zm0 6h.008v.008H12V12zm0 6h.008v.008H12V18zm6-12h.008v.008H18V6zm0 6h.008v.008H18V12zm0 6h.008v.008H18V18z" />
+      <svg viewBox="0 0 32 32" fill="none" className="h-8 w-8">
+        <rect x="2" y="6" width="10" height="5" rx="2" fill="#1e293b" stroke="#3b82f6" strokeWidth="1" strokeOpacity="0.5" />
+        <rect x="2" y="14" width="10" height="5" rx="2" fill="#1e293b" stroke="#3b82f6" strokeWidth="1" strokeOpacity="0.5" />
+        <rect x="2" y="22" width="10" height="5" rx="2" fill="#1e293b" stroke="#3b82f6" strokeWidth="1" strokeOpacity="0.5" />
+        <rect x="20" y="10" width="10" height="5" rx="2" fill="#1e293b" stroke="#f59e0b" strokeWidth="1" />
+        <rect x="20" y="18" width="10" height="5" rx="2" fill="#1e293b" stroke="#f59e0b" strokeWidth="1" />
+        <path d="M12 8.5h4v8h-4M12 16.5h4M12 24.5h4v-4" stroke="#475569" strokeWidth="1" />
+        <path d="M16 12.5h4M16 20.5h4" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.6" />
       </svg>
     ),
   },
@@ -151,8 +191,11 @@ const features = [
     description:
       "Crisp SVG brackets with round labels, seeding, and connector lines. Looks perfect at any zoom level.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7 text-emerald-400" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" />
+      <svg viewBox="0 0 32 32" fill="none" className="h-8 w-8">
+        <rect x="4" y="4" width="24" height="24" rx="4" fill="#1e293b" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.3" />
+        <path d="M8 10l4-2 4 2-4 2z" fill="#f59e0b" opacity="0.3" />
+        <path d="M10 14v8l6 4 6-4v-8l-6-4z" stroke="#f59e0b" strokeWidth="1" fill="none" />
+        <circle cx="16" cy="18" r="2" fill="#f59e0b" opacity="0.5" />
       </svg>
     ),
   },
@@ -161,8 +204,11 @@ const features = [
     description:
       "Download brackets sized for letter or A4 paper. Post on the wall, hand out to players, or archive.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7 text-emerald-400" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+      <svg viewBox="0 0 32 32" fill="none" className="h-8 w-8">
+        <path d="M8 4h10l6 6v18a2 2 0 01-2 2H8a2 2 0 01-2-2V6a2 2 0 012-2z" fill="#1e293b" stroke="#ef4444" strokeWidth="1" strokeOpacity="0.5" />
+        <path d="M18 4v6h6" stroke="#ef4444" strokeWidth="1" strokeOpacity="0.5" />
+        <text x="10" y="22" fill="#ef4444" fontSize="7" fontWeight="800" fontFamily="system-ui" opacity="0.8">PDF</text>
+        <path d="M26 16l-3 3-3-3M23 19v-6" stroke="#f59e0b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -171,8 +217,9 @@ const features = [
     description:
       "No signup, no data on our servers. Everything runs in your browser. Start building in seconds.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7 text-emerald-400" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+      <svg viewBox="0 0 32 32" fill="none" className="h-8 w-8">
+        <circle cx="16" cy="16" r="12" fill="#1e293b" stroke="#16a34a" strokeWidth="1" strokeOpacity="0.5" />
+        <path d="M10 16l4 4 8-8" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -181,9 +228,9 @@ const features = [
     description:
       "Unlock all formats, unlimited teams, no watermarks, and unlimited PDF downloads with Pro.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7 text-emerald-400" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 010 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 010-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      <svg viewBox="0 0 32 32" fill="none" className="h-8 w-8">
+        <path d="M16 4l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="#f59e0b" opacity="0.15" stroke="#f59e0b" strokeWidth="1" />
+        <text x="12.5" y="20" fill="#fbbf24" fontSize="9" fontWeight="800" fontFamily="system-ui">P</text>
       </svg>
     ),
   },
@@ -194,70 +241,131 @@ const useCases = [
     sport: "Basketball",
     description: "March Madness-style brackets, league playoffs, 3-on-3 tournaments",
     href: "/basketball-bracket",
-    emoji: "\u{1F3C0}",
+    icon: (
+      <svg viewBox="0 0 36 36" fill="none" className="h-9 w-9">
+        <circle cx="18" cy="18" r="14" fill="#92400e" stroke="#f59e0b" strokeWidth="1.5" />
+        <path d="M4 18h28M18 4v28" stroke="#f59e0b" strokeWidth="1" opacity="0.4" />
+        <path d="M8 8a14 14 0 000 20M28 8a14 14 0 010 20" stroke="#f59e0b" strokeWidth="1" opacity="0.3" />
+      </svg>
+    ),
+    accent: "border-amber-500/20 hover:border-amber-500/50",
   },
   {
     sport: "Football",
     description: "Playoff brackets, fantasy leagues, flag football tournaments",
     href: "/football-bracket",
-    emoji: "\u{1F3C8}",
+    icon: (
+      <svg viewBox="0 0 36 36" fill="none" className="h-9 w-9">
+        <ellipse cx="18" cy="18" rx="14" ry="10" fill="#92400e" stroke="#f59e0b" strokeWidth="1.5" transform="rotate(-30 18 18)" />
+        <path d="M12 18h12M18 13v10" stroke="#fff" strokeWidth="1.5" opacity="0.4" />
+        <path d="M13 15l2 2M13 21l2-2M23 15l-2 2M23 21l-2-2" stroke="#fff" strokeWidth="1" opacity="0.3" />
+      </svg>
+    ),
+    accent: "border-amber-500/20 hover:border-amber-500/50",
   },
   {
     sport: "Soccer",
     description: "Cup-style tournaments, club leagues, futsal competitions",
     href: "/soccer-bracket",
-    emoji: "\u26BD",
+    icon: (
+      <svg viewBox="0 0 36 36" fill="none" className="h-9 w-9">
+        <circle cx="18" cy="18" r="14" fill="#1e293b" stroke="#94a3b8" strokeWidth="1.5" />
+        <path d="M18 4l3.5 5.5h6l1.5 6-4.5 4 1 6.5H18" fill="#334155" stroke="#94a3b8" strokeWidth="0.75" />
+        <path d="M18 4l-3.5 5.5h-6l-1.5 6 4.5 4-1 6.5H18" fill="none" stroke="#94a3b8" strokeWidth="0.75" />
+      </svg>
+    ),
+    accent: "border-slate-500/20 hover:border-slate-400/50",
   },
   {
     sport: "Esports",
     description: "Gaming tournaments, LAN events, online qualifiers",
     href: "/esports-bracket",
-    emoji: "\u{1F3AE}",
+    icon: (
+      <svg viewBox="0 0 36 36" fill="none" className="h-9 w-9">
+        <rect x="4" y="8" width="28" height="16" rx="3" fill="#1e293b" stroke="#3b82f6" strokeWidth="1.5" />
+        <circle cx="12" cy="16" r="3" stroke="#3b82f6" strokeWidth="1" opacity="0.5" />
+        <circle cx="24" cy="14" r="1.5" fill="#3b82f6" opacity="0.5" />
+        <circle cx="27" cy="16" r="1.5" fill="#3b82f6" opacity="0.5" />
+        <circle cx="24" cy="18" r="1.5" fill="#3b82f6" opacity="0.5" />
+        <circle cx="21" cy="16" r="1.5" fill="#3b82f6" opacity="0.5" />
+        <path d="M14 28h8" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    ),
+    accent: "border-blue-500/20 hover:border-blue-500/50",
   },
   {
     sport: "Schools & Clubs",
     description: "Intramurals, debate brackets, spelling bees, academic bowls",
     href: "/single-elimination-bracket",
-    emoji: "\u{1F3EB}",
+    icon: (
+      <svg viewBox="0 0 36 36" fill="none" className="h-9 w-9">
+        <path d="M10 8h16l2 10H8z" fill="#1e293b" stroke="#16a34a" strokeWidth="1.5" />
+        <rect x="14" y="18" width="8" height="2" fill="#16a34a" opacity="0.3" />
+        <path d="M18 4v4" stroke="#16a34a" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M10 28h16" stroke="#16a34a" strokeWidth="1.5" strokeLinecap="round" />
+        <rect x="16" y="20" width="4" height="8" fill="#16a34a" opacity="0.2" />
+      </svg>
+    ),
+    accent: "border-green-500/20 hover:border-green-500/50",
   },
   {
     sport: "Office & Social",
     description: "Ping pong ladders, trivia nights, cornhole tournaments",
     href: "/8-team-bracket",
-    emoji: "\u{1F3D3}",
+    icon: (
+      <svg viewBox="0 0 36 36" fill="none" className="h-9 w-9">
+        <circle cx="18" cy="14" r="8" fill="#1e293b" stroke="#f59e0b" strokeWidth="1.5" />
+        <line x1="18" y1="22" x2="18" y2="32" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="18" cy="14" r="3" fill="#f59e0b" opacity="0.2" stroke="#f59e0b" strokeWidth="0.75" />
+      </svg>
+    ),
+    accent: "border-amber-500/20 hover:border-amber-500/50",
   },
 ];
 
 const steps = [
-  { step: "1", title: "Enter Teams", description: "Type or paste team names. Pick a preset size or enter any number." },
-  { step: "2", title: "Choose Format", description: "Single elimination, double elimination, or round robin." },
-  { step: "3", title: "Download PDF", description: "Print it, share it, or post it on the wall. Done in seconds." },
+  {
+    step: "1",
+    title: "Enter Teams",
+    description: "Type or paste team names. Pick a preset size or enter any number.",
+    color: "bg-blue-500/10 border-blue-500/20 text-blue-400",
+  },
+  {
+    step: "2",
+    title: "Choose Format",
+    description: "Single elimination, double elimination, or round robin.",
+    color: "bg-amber-500/10 border-amber-500/20 text-amber-400",
+  },
+  {
+    step: "3",
+    title: "Download PDF",
+    description: "Print it, share it, or post it on the wall. Done in seconds.",
+    color: "bg-green-500/10 border-green-500/20 text-green-400",
+  },
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#0a0e1a]">
+    <div className="min-h-screen bg-[#0b0f1a]">
       {/* Header */}
-      <header className="border-b border-slate-800/60 bg-[#0a0e1a]/90 backdrop-blur-md sticky top-0 z-50">
+      <header className="border-b border-amber-500/10 bg-[#0b0f1a]/90 backdrop-blur-md sticky top-0 z-50">
         <div className="mx-auto max-w-5xl px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-              <TrophyIcon className="h-4.5 w-4.5 text-emerald-400" />
-            </div>
-            <span className="text-lg font-bold text-white tracking-tight">
-              Bracket Maker
+            <TrophySVG className="h-8 w-8" />
+            <span className="text-lg font-extrabold text-white tracking-tight">
+              Bracket<span className="text-amber-400">Maker</span>
             </span>
           </Link>
           <nav className="flex items-center gap-4">
             <Link
               href="/pricing"
-              className="text-sm text-slate-400 hover:text-white transition-colors"
+              className="text-sm text-slate-400 hover:text-amber-400 transition-colors"
             >
               Pricing
             </Link>
             <Link
               href="/editor"
-              className="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-400 transition-colors shadow-lg shadow-emerald-500/20"
+              className="rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 px-5 py-2 text-sm font-bold text-white hover:from-amber-400 hover:to-amber-500 transition-all shadow-lg shadow-amber-500/20"
             >
               Create Bracket
             </Link>
@@ -268,18 +376,18 @@ export default function Home() {
       <main>
         {/* Hero */}
         <section className="relative overflow-hidden field-pattern">
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/[0.07] via-transparent to-transparent" />
-          <div className="absolute top-20 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
-          <div className="absolute top-40 right-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-b from-amber-500/[0.05] via-transparent to-transparent" />
+          <div className="absolute top-10 left-1/3 w-[500px] h-[500px] bg-amber-500/[0.03] rounded-full blur-3xl" />
+          <div className="absolute top-40 right-1/4 w-72 h-72 bg-blue-500/[0.03] rounded-full blur-3xl" />
           <div className="relative mx-auto max-w-5xl px-4 pt-20 pb-12">
             <div className="text-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-1.5 text-sm text-emerald-400 mb-6">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/5 px-4 py-1.5 text-sm font-semibold text-amber-400 mb-6">
+                <TrophySVG className="h-4 w-4" />
                 Free &middot; No signup required
               </div>
-              <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.1]">
+              <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.08] uppercase">
                 Tournament Brackets
-                <span className="block bg-gradient-to-r from-emerald-400 to-green-300 bg-clip-text text-transparent mt-1">Built to Compete</span>
+                <span className="block trophy-text mt-1">Built to Compete</span>
               </h1>
               <p className="mt-6 text-lg text-slate-400 max-w-xl mx-auto leading-relaxed">
                 Enter teams, pick a format, download a clean PDF.
@@ -288,14 +396,14 @@ export default function Home() {
               <div className="mt-8 flex justify-center gap-4 flex-wrap">
                 <Link
                   href="/editor"
-                  className="group rounded-lg bg-emerald-500 px-6 py-3 text-sm font-bold text-white hover:bg-emerald-400 transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40"
+                  className="group rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 px-7 py-3.5 text-sm font-bold text-white hover:from-amber-400 hover:to-amber-500 transition-all shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 uppercase tracking-wide"
                 >
                   Make a Bracket — Free
                   <span className="inline-block ml-1.5 transition-transform group-hover:translate-x-0.5">&rarr;</span>
                 </Link>
                 <Link
                   href="#how-it-works"
-                  className="rounded-lg border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-300 hover:bg-slate-800/50 hover:border-slate-600 transition-all"
+                  className="rounded-lg border border-slate-700 px-6 py-3.5 text-sm font-semibold text-slate-300 hover:bg-slate-800/50 hover:border-amber-500/30 transition-all"
                 >
                   How It Works
                 </Link>
@@ -303,12 +411,12 @@ export default function Home() {
             </div>
 
             {/* Bracket Preview */}
-            <div className="mt-14 rounded-2xl border border-slate-700/50 bg-[#0d1220] p-6 sm:p-8 glow-border">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/70" />
-                <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
+            <div className="mt-14 rounded-2xl border border-amber-500/15 bg-[#0d1220] p-6 sm:p-8 glow-border sport-stripe">
+              <div className="flex items-center gap-2 mb-4 pt-1">
+                <div className="h-2.5 w-2.5 rounded-full bg-amber-500/70" />
+                <div className="h-2.5 w-2.5 rounded-full bg-blue-500/70" />
                 <div className="h-2.5 w-2.5 rounded-full bg-slate-500/70" />
-                <span className="ml-3 text-xs text-slate-600 font-mono tracking-wide">8-team-single-elim.svg</span>
+                <span className="ml-3 text-xs text-amber-500/40 font-mono tracking-wide uppercase">8-team-single-elim.svg</span>
               </div>
               <HeroBracketSVG />
             </div>
@@ -316,19 +424,19 @@ export default function Home() {
         </section>
 
         {/* How It Works */}
-        <section id="how-it-works" className="border-y border-slate-800/60 bg-[#0c1020]">
+        <section id="how-it-works" className="border-y scoreboard-divider border-slate-800/30 bg-[#0c1020]">
           <div className="mx-auto max-w-5xl px-4 py-16">
-            <h2 className="text-2xl font-bold text-center text-white mb-2">
+            <h2 className="text-2xl font-black text-center text-white mb-2 uppercase tracking-wide">
               Three Steps. Done.
             </h2>
             <p className="text-center text-slate-500 mb-12 text-sm">No account, no learning curve.</p>
             <div className="grid gap-8 sm:grid-cols-3">
               {steps.map((s) => (
                 <div key={s.step} className="text-center">
-                  <div className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-lg font-bold mb-4">
+                  <div className={`inline-flex items-center justify-center h-14 w-14 rounded-2xl border text-xl font-black mb-4 ${s.color}`}>
                     {s.step}
                   </div>
-                  <h3 className="text-lg font-semibold text-white">{s.title}</h3>
+                  <h3 className="text-lg font-bold text-white">{s.title}</h3>
                   <p className="mt-2 text-sm text-slate-400 leading-relaxed">{s.description}</p>
                 </div>
               ))}
@@ -338,16 +446,16 @@ export default function Home() {
 
         {/* Features */}
         <section className="mx-auto max-w-5xl px-4 py-16">
-          <h2 className="text-2xl font-bold text-center text-white mb-2">
+          <h2 className="text-2xl font-black text-center text-white mb-2 uppercase tracking-wide">
             Built for Real Tournaments
           </h2>
           <p className="text-center text-slate-500 mb-12 text-sm">Not another generic bracket tool.</p>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((f) => (
-              <div key={f.title} className="flex gap-4 p-4 rounded-xl hover:bg-slate-800/30 transition-colors">
+              <div key={f.title} className="flex gap-4 p-5 rounded-xl border border-slate-800/40 bg-[#0d1220]/50 hover:border-amber-500/20 transition-all">
                 <div className="shrink-0 mt-0.5">{f.icon}</div>
                 <div>
-                  <h3 className="font-semibold text-white">{f.title}</h3>
+                  <h3 className="font-bold text-white">{f.title}</h3>
                   <p className="mt-1 text-sm text-slate-400 leading-relaxed">
                     {f.description}
                   </p>
@@ -358,9 +466,9 @@ export default function Home() {
         </section>
 
         {/* Sport-Specific Sections */}
-        <section className="border-y border-slate-800/60 bg-[#0c1020]">
+        <section className="border-y scoreboard-divider border-slate-800/30 bg-[#0c1020]">
           <div className="mx-auto max-w-5xl px-4 py-16">
-            <h2 className="text-2xl font-bold text-center text-white mb-2">
+            <h2 className="text-2xl font-black text-center text-white mb-2 uppercase tracking-wide">
               Brackets for Every Competition
             </h2>
             <p className="text-center text-slate-500 mb-12 text-sm">Pick your sport. We handle the rest.</p>
@@ -369,11 +477,11 @@ export default function Home() {
                 <Link
                   key={uc.sport}
                   href={uc.href}
-                  className="group rounded-xl border border-slate-800/60 bg-[#0d1220] p-5 hover:border-emerald-500/30 hover:bg-emerald-500/[0.03] transition-all"
+                  className={`group rounded-xl border bg-[#0d1220] p-5 transition-all ${uc.accent}`}
                 >
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xl">{uc.emoji}</span>
-                    <h3 className="font-semibold text-white group-hover:text-emerald-400 transition-colors">
+                    {uc.icon}
+                    <h3 className="font-bold text-white group-hover:text-amber-400 transition-colors">
                       {uc.sport}
                     </h3>
                   </div>
@@ -388,7 +496,7 @@ export default function Home() {
 
         {/* Browse All Bracket Types */}
         <section className="mx-auto max-w-5xl px-4 py-16">
-          <h2 className="text-2xl font-bold text-center text-white mb-8">
+          <h2 className="text-2xl font-black text-center text-white mb-8 uppercase tracking-wide">
             Browse Bracket Types
           </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -409,7 +517,7 @@ export default function Home() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-lg border border-slate-800/60 bg-[#0d1220] px-4 py-3 text-sm text-slate-400 hover:bg-emerald-500/[0.03] hover:border-emerald-500/20 hover:text-emerald-400 transition-all"
+                className="rounded-lg border border-slate-800/60 bg-[#0d1220] px-4 py-3 text-sm text-slate-400 hover:bg-amber-500/[0.03] hover:border-amber-500/20 hover:text-amber-400 transition-all"
               >
                 {link.label}
               </Link>
@@ -419,13 +527,11 @@ export default function Home() {
 
         {/* CTA */}
         <section className="mx-auto max-w-5xl px-4 py-20 text-center">
-          <div className="rounded-2xl border border-emerald-500/10 bg-gradient-to-b from-emerald-500/[0.05] to-transparent p-12 relative overflow-hidden">
+          <div className="rounded-2xl border border-amber-500/15 bg-gradient-to-b from-amber-500/[0.04] to-transparent p-12 relative overflow-hidden">
             <div className="absolute inset-0 field-pattern opacity-50" />
             <div className="relative">
-              <div className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 mx-auto mb-4">
-                <TrophyIcon className="h-7 w-7 text-emerald-400" />
-              </div>
-              <h2 className="text-3xl font-bold text-white">
+              <TrophySVG className="h-16 w-16 mx-auto mb-4" />
+              <h2 className="text-3xl font-black text-white uppercase tracking-wide">
                 Ready to Run Your Tournament?
               </h2>
               <p className="mt-4 text-slate-400 max-w-md mx-auto">
@@ -433,7 +539,7 @@ export default function Home() {
               </p>
               <Link
                 href="/editor"
-                className="mt-8 inline-block rounded-lg bg-emerald-500 px-8 py-3 text-sm font-bold text-white hover:bg-emerald-400 transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40"
+                className="mt-8 inline-block rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 px-8 py-3.5 text-sm font-bold text-white hover:from-amber-400 hover:to-amber-500 transition-all shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 uppercase tracking-wide"
               >
                 Create Your Bracket Now
               </Link>
@@ -444,21 +550,17 @@ export default function Home() {
 
       <footer className="border-t border-slate-800/60">
         <div className="mx-auto max-w-5xl px-4 py-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-slate-600">
-            Tournament Bracket Maker &mdash; Create printable tournament brackets for
-            free.
-          </p>
+          <div className="flex items-center gap-2">
+            <TrophySVG className="h-5 w-5" />
+            <p className="text-sm text-slate-600">
+              Tournament Bracket Maker &mdash; Create printable tournament brackets for free.
+            </p>
+          </div>
           <nav className="flex gap-6 text-sm text-slate-500">
-            <Link
-              href="/editor"
-              className="hover:text-slate-300 transition-colors"
-            >
+            <Link href="/editor" className="hover:text-amber-400 transition-colors">
               Editor
             </Link>
-            <Link
-              href="/pricing"
-              className="hover:text-slate-300 transition-colors"
-            >
+            <Link href="/pricing" className="hover:text-amber-400 transition-colors">
               Pricing
             </Link>
           </nav>

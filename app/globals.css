@@ -1,10 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0e1a;
+  --background: #0b0f1a;
   --foreground: #e2e8f0;
-  --accent: #22c55e;
-  --accent-glow: rgba(34, 197, 94, 0.15);
+  --gold: #f59e0b;
+  --gold-dim: #b45309;
+  --gold-glow: rgba(245, 158, 11, 0.15);
+  --champion: #fbbf24;
+  --sport-blue: #3b82f6;
+  --sport-red: #ef4444;
+  --field-green: #16a34a;
+  --navy: #0f172a;
+  --navy-light: #1e293b;
 }
 
 @theme inline {
@@ -20,25 +27,60 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Subtle grid pattern for sports-field feel */
+/* Stadium turf texture */
 .field-pattern {
   background-image:
-    linear-gradient(rgba(34, 197, 94, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(34, 197, 94, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(245, 158, 11, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
-/* Glowing accent border */
+/* Championship gold glow border */
 .glow-border {
-  box-shadow: 0 0 20px rgba(34, 197, 94, 0.1), inset 0 1px 0 rgba(34, 197, 94, 0.1);
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.08), inset 0 1px 0 rgba(245, 158, 11, 0.1);
 }
 
-/* Champion pulse */
+/* Trophy shimmer animation */
+@keyframes trophy-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.trophy-text {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b, #fbbf24, #f59e0b);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: trophy-shimmer 4s linear infinite;
+}
+
+/* Champion pulse on badges */
 @keyframes champion-pulse {
-  0%, 100% { filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.4)); }
-  50% { filter: drop-shadow(0 0 12px rgba(250, 204, 21, 0.7)); }
+  0%, 100% { box-shadow: 0 0 8px rgba(245, 158, 11, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.6); }
 }
 
 .champion-glow {
   animation: champion-pulse 2s ease-in-out infinite;
+}
+
+/* Scoreboard-style section divider */
+.scoreboard-divider {
+  border-image: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.3), transparent) 1;
+}
+
+/* Sport stripe accent on cards */
+.sport-stripe {
+  position: relative;
+}
+.sport-stripe::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--sport-blue));
+  border-radius: 4px 4px 0 0;
 }
