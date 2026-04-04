@@ -87,23 +87,38 @@ export default function EditorPage() {
   }, [bracket, isPro]);
 
   return (
-    <div className="min-h-screen bg-[#0a0e1a]">
-      <header className="border-b border-slate-800/60 bg-[#0a0e1a]/90 backdrop-blur-md">
+    <div className="min-h-screen bg-[#0b0f1a]">
+      <header className="border-b border-amber-500/10 bg-[#0b0f1a]/90 backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between">
           <Link
             href="/"
-            className="text-lg font-bold text-white tracking-tight"
+            className="flex items-center gap-2 text-lg font-extrabold text-white tracking-tight"
           >
-            Tournament Bracket Maker
+            <svg viewBox="0 0 48 48" fill="none" className="h-7 w-7">
+              <path d="M14 8h20v14a10 10 0 01-20 0V8z" fill="url(#tbg)" />
+              <path d="M14 12H8a4 4 0 000 8h2a6 6 0 004-2.2V12z" fill="url(#th)" opacity="0.8" />
+              <path d="M34 12h6a4 4 0 010 8h-2a6 6 0 01-4-2.2V12z" fill="url(#th)" opacity="0.8" />
+              <rect x="20" y="30" width="8" height="6" rx="1" fill="#b45309" />
+              <rect x="16" y="36" width="16" height="4" rx="2" fill="#92400e" />
+              <defs>
+                <linearGradient id="tbg" x1="24" y1="8" x2="24" y2="30" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#fbbf24" /><stop offset="1" stopColor="#d97706" />
+                </linearGradient>
+                <linearGradient id="th" x1="0" y1="0" x2="0" y2="1">
+                  <stop stopColor="#f59e0b" /><stop offset="1" stopColor="#b45309" />
+                </linearGradient>
+              </defs>
+            </svg>
+            Bracket<span className="text-amber-400">Maker</span>
           </Link>
           {isPro ? (
-            <span className="rounded-lg bg-emerald-900/50 border border-emerald-500/20 px-4 py-2 text-sm font-medium text-emerald-400">
+            <span className="rounded-lg bg-amber-900/30 border border-amber-500/30 px-4 py-2 text-sm font-bold text-amber-400 uppercase tracking-wider">
               Pro
             </span>
           ) : (
             <Link
               href="/pricing"
-              className="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-400 transition-colors shadow-lg shadow-emerald-500/20"
+              className="rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 px-4 py-2 text-sm font-bold text-white hover:from-amber-400 hover:to-amber-500 transition-all shadow-lg shadow-amber-500/20"
             >
               Upgrade to Pro
             </Link>
@@ -116,21 +131,21 @@ export default function EditorPage() {
           {/* Controls */}
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1">
+              <label className="block text-xs font-bold text-amber-400/70 uppercase tracking-wider mb-1.5">
                 Tournament Title
               </label>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full rounded-lg border border-slate-700/60 bg-[#0d1220] px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 transition-colors"
+                className="w-full rounded-lg border border-slate-700/60 bg-[#0d1220] px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 transition-colors"
                 placeholder="Tournament name"
               />
             </div>
 
             {/* Team Presets */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-xs font-bold text-amber-400/70 uppercase tracking-wider mb-2">
                 Quick Presets
               </label>
               <div className="flex flex-wrap gap-2">
@@ -146,10 +161,10 @@ export default function EditorPage() {
                         }
                         handlePreset(n);
                       }}
-                      className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-all flex items-center gap-1.5 ${
+                      className={`rounded-lg border px-3 py-1.5 text-sm font-bold transition-all flex items-center gap-1.5 ${
                         needsPro
                           ? "border-slate-800/60 text-slate-600"
-                          : "border-slate-700/60 text-slate-300 hover:border-emerald-500/40 hover:text-emerald-400 hover:bg-emerald-500/[0.03]"
+                          : "border-slate-700/60 text-slate-300 hover:border-amber-500/40 hover:text-amber-400 hover:bg-amber-500/[0.03]"
                       }`}
                     >
                       {needsPro && <LockIcon />}
@@ -162,7 +177,7 @@ export default function EditorPage() {
 
             {/* Team Input */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1">
+              <label className="block text-xs font-bold text-amber-400/70 uppercase tracking-wider mb-1.5">
                 Teams/Players{" "}
                 <span
                   className={
@@ -172,15 +187,14 @@ export default function EditorPage() {
                   ({teamCount}
                   {isOverLimit
                     ? ` / ${FREE_LIMITS.maxTeams} free limit`
-                    : ""}
-                  )
+                    : ""})
                 </span>
               </label>
               <textarea
                 value={teamInput}
                 onChange={(e) => setTeamInput(e.target.value)}
                 rows={10}
-                className="w-full rounded-lg border border-slate-700/60 bg-[#0d1220] px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 font-mono transition-colors"
+                className="w-full rounded-lg border border-slate-700/60 bg-[#0d1220] px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 font-mono transition-colors"
                 placeholder={"Enter team names, one per line\n\nExample:\nTeam Alpha\nTeam Beta\nTeam Gamma\nTeam Delta"}
               />
               {isOverLimit && (
@@ -199,7 +213,7 @@ export default function EditorPage() {
 
             {/* Format */}
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-xs font-bold text-amber-400/70 uppercase tracking-wider mb-2">
                 Format
               </label>
               <div className="space-y-2">
@@ -221,9 +235,9 @@ export default function EditorPage() {
                         }
                         setFormat(f.value);
                       }}
-                      className={`w-full rounded-lg border px-4 py-2.5 text-sm font-medium text-left flex items-center justify-between transition-all ${
+                      className={`w-full rounded-lg border px-4 py-2.5 text-sm font-bold text-left flex items-center justify-between transition-all ${
                         format === f.value && !locked
-                          ? "border-emerald-500/50 bg-emerald-500/[0.08] text-emerald-400"
+                          ? "border-amber-500/50 bg-amber-500/[0.08] text-amber-400"
                           : locked
                           ? "border-slate-800/60 text-slate-600"
                           : "border-slate-700/60 text-slate-400 hover:border-slate-600"
@@ -234,7 +248,7 @@ export default function EditorPage() {
                         {f.label}
                       </span>
                       {locked && (
-                        <span className="rounded bg-slate-700/50 px-2 py-0.5 text-xs font-semibold text-slate-500">
+                        <span className="rounded bg-amber-500/10 px-2 py-0.5 text-xs font-bold text-amber-500/60 uppercase">
                           PRO
                         </span>
                       )}
@@ -243,7 +257,7 @@ export default function EditorPage() {
                 })}
               </div>
               {isProFormat && (
-                <p className="mt-2 text-xs text-emerald-400/70">
+                <p className="mt-2 text-xs text-amber-400/70">
                   This format requires Pro.{" "}
                   <button
                     onClick={() => setShowUpgrade(true)}
@@ -259,7 +273,7 @@ export default function EditorPage() {
             <button
               onClick={handleGenerate}
               disabled={teamCount < 2}
-              className="w-full rounded-lg bg-emerald-500 px-4 py-3 text-sm font-semibold text-white hover:bg-emerald-400 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30"
+              className="w-full rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 px-4 py-3 text-sm font-bold text-white hover:from-amber-400 hover:to-amber-500 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 uppercase tracking-wide"
             >
               Generate Bracket
             </button>
@@ -267,7 +281,7 @@ export default function EditorPage() {
             {bracket && (
               <button
                 onClick={handleDownload}
-                className="w-full rounded-lg border-2 border-emerald-500/50 px-4 py-3 text-sm font-semibold text-emerald-400 hover:bg-emerald-500/[0.05] transition-all"
+                className="w-full rounded-lg border-2 border-amber-500/50 px-4 py-3 text-sm font-bold text-amber-400 hover:bg-amber-500/[0.05] transition-all uppercase tracking-wide"
               >
                 {isPro
                   ? "Download PDF"
@@ -277,34 +291,30 @@ export default function EditorPage() {
           </div>
 
           {/* Bracket Preview */}
-          <div className="rounded-xl border border-slate-700/50 bg-[#0d1220] p-6 min-h-[500px] flex flex-col overflow-x-auto glow-border">
+          <div className="rounded-xl border border-amber-500/10 bg-[#0d1220] p-6 min-h-[500px] flex flex-col overflow-x-auto glow-border">
             {!bracket ? (
               <div className="flex-1 flex items-center justify-center text-slate-500">
                 <div className="text-center">
-                  <svg
-                    className="mx-auto h-16 w-16 text-slate-700 mb-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-4.5A3.375 3.375 0 0012.375 10.5H12m0 0V5.625m0 4.875h.375A3.375 3.375 0 0015.75 14.25v4.5m-3.75-9V5.625m0 0A2.625 2.625 0 1014.625 3 2.625 2.625 0 0012 5.625z"
-                    />
+                  {/* Trophy empty state */}
+                  <svg viewBox="0 0 80 80" fill="none" className="mx-auto h-20 w-20 mb-4">
+                    <path d="M24 16h32v22a16 16 0 01-32 0V16z" fill="#1e293b" stroke="#334155" strokeWidth="1.5" />
+                    <path d="M24 22H14a6 6 0 000 12h4a10 10 0 006-3V22z" fill="#1e293b" stroke="#334155" strokeWidth="1" opacity="0.5" />
+                    <path d="M56 22h10a6 6 0 010 12h-4a10 10 0 01-6-3V22z" fill="#1e293b" stroke="#334155" strokeWidth="1" opacity="0.5" />
+                    <rect x="34" y="50" width="12" height="10" rx="2" fill="#1e293b" stroke="#334155" strokeWidth="1" />
+                    <rect x="28" y="60" width="24" height="6" rx="3" fill="#1e293b" stroke="#334155" strokeWidth="1" />
+                    <text x="40" y="38" textAnchor="middle" fill="#475569" fontSize="14" fontWeight="800" fontFamily="system-ui">?</text>
                   </svg>
-                  <p className="text-lg font-medium text-slate-400">
-                    Enter teams and click Generate
+                  <p className="text-lg font-bold text-slate-400">
+                    Set up your first tournament
                   </p>
                   <p className="text-sm mt-1 text-slate-600">
-                    Your bracket preview will appear here
+                    Enter teams on the left and click Generate
                   </p>
                 </div>
               </div>
             ) : (
               <>
-                <h3 className="text-lg font-bold text-center mb-4 text-white tracking-tight">
+                <h3 className="text-lg font-black text-center mb-4 text-white tracking-tight uppercase">
                   {bracket.title}
                 </h3>
                 <BracketSVG bracket={bracket} />
@@ -316,21 +326,23 @@ export default function EditorPage() {
         {/* Upgrade Modal */}
         {showUpgrade && (
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="bg-[#0d1220] border border-slate-700/50 rounded-2xl p-8 max-w-md mx-4 shadow-2xl">
-              <h3 className="text-xl font-bold text-white">
-                Upgrade to Pro
-              </h3>
-              <p className="mt-2 text-sm text-slate-400">
-                Unlock unlimited teams, all bracket formats (double elimination,
-                round robin), unlimited PDF downloads, and no watermarks.
-              </p>
+            <div className="bg-[#0d1220] border border-amber-500/20 rounded-2xl p-8 max-w-md mx-4 shadow-2xl sport-stripe">
+              <div className="pt-2">
+                <h3 className="text-xl font-black text-white uppercase tracking-wide">
+                  Upgrade to Pro
+                </h3>
+                <p className="mt-2 text-sm text-slate-400">
+                  Unlock unlimited teams, all bracket formats (double elimination,
+                  round robin), unlimited PDF downloads, and no watermarks.
+                </p>
+              </div>
 
               <div className="mt-6 space-y-3">
                 <a
                   href={MONTHLY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full rounded-lg bg-emerald-500 px-4 py-3 text-sm font-semibold text-white text-center hover:bg-emerald-400 transition-all shadow-lg shadow-emerald-500/20"
+                  className="block w-full rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 px-4 py-3 text-sm font-bold text-white text-center hover:from-amber-400 hover:to-amber-500 transition-all shadow-lg shadow-amber-500/20 uppercase tracking-wide"
                 >
                   Pro Monthly &mdash; $3.99/mo
                 </a>
@@ -338,7 +350,7 @@ export default function EditorPage() {
                   href={YEARLY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full rounded-lg border-2 border-emerald-500/50 px-4 py-3 text-sm font-semibold text-emerald-400 text-center hover:bg-emerald-500/[0.05] transition-all"
+                  className="block w-full rounded-lg border-2 border-amber-500/50 px-4 py-3 text-sm font-bold text-amber-400 text-center hover:bg-amber-500/[0.05] transition-all"
                 >
                   Pro Yearly &mdash; $24.99/yr (save 48%)
                 </a>
@@ -429,7 +441,7 @@ function EliminationDisplay({
             <stop offset="100%" stopColor="#1e293b" />
           </linearGradient>
           <linearGradient id="finalsBg" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#14532d" stopOpacity="0.5" />
+            <stop offset="0%" stopColor="#78350f" stopOpacity="0.5" />
             <stop offset="100%" stopColor="#0f172a" />
           </linearGradient>
         </defs>
@@ -445,11 +457,12 @@ function EliminationDisplay({
                 x={x + matchW / 2}
                 y={16}
                 textAnchor="middle"
-                fill="#475569"
+                fill="#f59e0b"
                 fontSize={10}
                 fontWeight={700}
-                letterSpacing="0.5"
+                letterSpacing="1.5"
                 fontFamily="system-ui"
+                opacity={0.5}
               >
                 {(format === "double"
                   ? getRoundLabel(r, totalRounds)
@@ -470,7 +483,7 @@ function EliminationDisplay({
                       height={matchH}
                       rx={6}
                       fill={isFinal ? "url(#finalsBg)" : "url(#matchBg)"}
-                      stroke={isFinal ? "#22c55e" : "#334155"}
+                      stroke={isFinal ? "#f59e0b" : "#334155"}
                       strokeWidth={1}
                       strokeOpacity={isFinal ? 0.4 : 1}
                     />
@@ -584,19 +597,19 @@ function RoundRobinDisplay({ rounds }: { rounds: Match[][] }) {
       <div className="space-y-6">
         {rounds.map((roundMatches, r) => (
           <div key={r}>
-            <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
+            <h4 className="text-xs font-bold text-amber-500/60 uppercase tracking-wider mb-3">
               Round {r + 1}
             </h4>
             <div className="space-y-2">
               {roundMatches.map((match) => (
                 <div
                   key={match.id}
-                  className="rounded-lg bg-[#0d1220] border border-slate-700/50 p-3 flex items-center justify-between hover:border-emerald-500/20 transition-colors"
+                  className="rounded-lg bg-[#0d1220] border border-slate-700/50 p-3 flex items-center justify-between hover:border-amber-500/20 transition-colors"
                 >
                   <div className="text-sm font-semibold text-slate-200">
                     {match.team1 || "TBD"}
                   </div>
-                  <div className="text-xs font-bold text-slate-600 uppercase">vs</div>
+                  <div className="text-xs font-black text-amber-500/40 uppercase">vs</div>
                   <div className="text-sm font-semibold text-slate-200">
                     {match.team2 || "TBD"}
                   </div>
@@ -635,7 +648,7 @@ function ConnectorLine({
     <path
       d={`M ${x1} ${y1} H ${midX} V ${nextMidY} H ${nextRoundX}`}
       fill="none"
-      stroke="#22c55e"
+      stroke="#f59e0b"
       strokeWidth={1.5}
       strokeOpacity={0.3}
     />
