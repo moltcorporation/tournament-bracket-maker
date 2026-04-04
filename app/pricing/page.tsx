@@ -65,18 +65,18 @@ const plans = [
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-slate-950">
-      <header className="border-b border-slate-800">
+    <div className="min-h-screen bg-[#0a0e1a]">
+      <header className="border-b border-slate-800/60 bg-[#0a0e1a]/90 backdrop-blur-md">
         <div className="mx-auto max-w-5xl px-4 py-4 flex items-center justify-between">
           <Link
             href="/"
-            className="text-xl font-bold text-white"
+            className="text-lg font-bold text-white tracking-tight"
           >
             Tournament Bracket Maker
           </Link>
           <Link
             href="/editor"
-            className="rounded-lg bg-amber-500 px-4 py-2 text-sm font-medium text-slate-950 hover:bg-amber-400 transition-colors"
+            className="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-400 transition-colors shadow-lg shadow-emerald-500/20"
           >
             Open Editor
           </Link>
@@ -85,7 +85,7 @@ export default function PricingPage() {
 
       <main className="mx-auto max-w-5xl px-4 py-16">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white">
+          <h1 className="text-4xl font-bold text-white tracking-tight">
             Simple, Transparent Pricing
           </h1>
           <p className="mt-4 text-lg text-slate-400 max-w-2xl mx-auto">
@@ -100,12 +100,12 @@ export default function PricingPage() {
               key={plan.name}
               className={`rounded-2xl border p-8 flex flex-col ${
                 plan.highlighted
-                  ? "border-amber-500 bg-slate-900 shadow-lg ring-2 ring-amber-500"
-                  : "border-slate-800 bg-slate-900"
+                  ? "border-emerald-500/40 bg-[#0d1220] shadow-lg shadow-emerald-500/10 ring-1 ring-emerald-500/20"
+                  : "border-slate-800/60 bg-[#0d1220]"
               }`}
             >
               {plan.highlighted && (
-                <span className="inline-block self-start rounded-full bg-amber-900 px-3 py-1 text-xs font-semibold text-amber-300 mb-4">
+                <span className="inline-block self-start rounded-full bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 text-xs font-semibold text-emerald-400 mb-4">
                   Most Popular
                 </span>
               )}
@@ -117,16 +117,16 @@ export default function PricingPage() {
                   {plan.price}
                 </span>
                 {plan.period && (
-                  <span className="ml-1 text-slate-400">{plan.period}</span>
+                  <span className="ml-1 text-slate-500">{plan.period}</span>
                 )}
               </div>
-              <p className="mt-2 text-sm text-slate-400">{plan.description}</p>
+              <p className="mt-2 text-sm text-slate-500">{plan.description}</p>
 
               <ul className="mt-6 space-y-3 flex-1">
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-sm">
                     <svg
-                      className="h-5 w-5 text-amber-500 shrink-0 mt-0.5"
+                      className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -150,10 +150,10 @@ export default function PricingPage() {
                   href={plan.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`mt-8 block rounded-lg px-4 py-3 text-center text-sm font-semibold transition-colors ${
+                  className={`mt-8 block rounded-lg px-4 py-3 text-center text-sm font-semibold transition-all ${
                     plan.highlighted
-                      ? "bg-amber-500 text-slate-950 hover:bg-amber-400"
-                      : "border border-slate-700 text-slate-300 hover:bg-slate-800"
+                      ? "bg-emerald-500 text-white hover:bg-emerald-400 shadow-lg shadow-emerald-500/20"
+                      : "border border-slate-700/60 text-slate-300 hover:bg-slate-800/50 hover:border-slate-600"
                   }`}
                 >
                   {plan.cta}
@@ -161,10 +161,10 @@ export default function PricingPage() {
               ) : (
                 <Link
                   href={plan.href}
-                  className={`mt-8 block rounded-lg px-4 py-3 text-center text-sm font-semibold transition-colors ${
+                  className={`mt-8 block rounded-lg px-4 py-3 text-center text-sm font-semibold transition-all ${
                     plan.highlighted
-                      ? "bg-amber-500 text-slate-950 hover:bg-amber-400"
-                      : "border border-slate-700 text-slate-300 hover:bg-slate-800"
+                      ? "bg-emerald-500 text-white hover:bg-emerald-400 shadow-lg shadow-emerald-500/20"
+                      : "border border-slate-700/60 text-slate-300 hover:bg-slate-800/50 hover:border-slate-600"
                   }`}
                 >
                   {plan.cta}
@@ -175,11 +175,11 @@ export default function PricingPage() {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-slate-500">
             Already have Pro?{" "}
             <Link
               href="/pro/verify"
-              className="text-amber-500 hover:text-amber-400 underline"
+              className="text-emerald-400 hover:text-emerald-300 underline"
             >
               Verify your access
             </Link>
