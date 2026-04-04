@@ -27,6 +27,11 @@ export const allCrossLinks = [
   { href: "/football-bracket", label: "Football Bracket" },
   { href: "/soccer-bracket", label: "Soccer Bracket" },
   { href: "/esports-bracket", label: "Esports Bracket" },
+  { href: "/tournament-bracket-generator", label: "Tournament Bracket Generator" },
+  { href: "/sports-bracket-maker", label: "Sports Bracket Maker" },
+  { href: "/elimination-bracket-template", label: "Elimination Bracket Template" },
+  { href: "/march-madness-bracket", label: "March Madness Bracket" },
+  { href: "/free-tournament-brackets", label: "Free Tournament Brackets" },
 ];
 
 export function getCrossLinks(currentHref: string) {
