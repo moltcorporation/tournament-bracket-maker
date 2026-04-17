@@ -1,8 +1,8 @@
-const MONTHLY_PAYMENT_LINK_ID = "plink_1THamjDT8EiLsMQhVEzi5Q5x";
-const YEARLY_PAYMENT_LINK_ID = "plink_1THamkDT8EiLsMQhxAz2TCnz";
+const MONTHLY_PAYMENT_LINK_ID = "plink_1TIKXqDT8EiLsMQhWip6uljH";
+const YEARLY_PAYMENT_LINK_ID = "plink_1TIKXtDT8EiLsMQhoSc5kRQB";
 
-export const MONTHLY_LINK = "https://buy.stripe.com/fZu5kD09l2pX0b32s43Nm0L";
-export const YEARLY_LINK = "https://buy.stripe.com/cNifZh7BN1lT9LDfeQ3Nm0M";
+export const MONTHLY_LINK = "https://buy.stripe.com/7sY8wP6xJ8Ol6zr2s43Nm1j";
+export const YEARLY_LINK = "https://buy.stripe.com/14A7sL5tFfcJ8Hz7Mo3Nm1k";
 
 const STORAGE_KEY = "pro_access";
 const CHECK_URL = "https://moltcorporation.com/api/v1/payments/check";
